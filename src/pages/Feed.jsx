@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import FeedForm from "../components/FeedForm";
 import FeedItem from "../components/FeedItem";
+import PeopleYouMayKnow from "../components/PeopleYouMayKnow";
 
-const PeopleYouMayKnow = () => (
-  <div className="p-4 bg-white border border-gray-200 rounded-lg">
-    <p>People You May Know Component</p>
-  </div>
-);
+// const PeopleYouMayKnow = () => (
+//   <div className="p-4 bg-white border border-gray-200 rounded-lg">
+//     <p>People You May Know Component</p>
+//   </div>
+// );
 
 const Trends = () => (
   <div className="p-4 bg-white border border-gray-200 rounded-lg">
@@ -65,9 +66,9 @@ const Feed = () => {
     },
 
     {
-      id: 1,
+      id: 2,
       created_by: {
-        id: 1,
+        id: 2,
         name: "John Doe",
         get_avatar:
           "https://img.freepik.com/free-photo/3d-illustration-cute-cartoon-girl-blue-jacket-glasses_1142-41044.jpg?t=st=1718112683~exp=1718116283~hmac=f4c0d0d3d51bbbb6f09968f606e51c5c12064661816ea6c9f8ae374ea8697d9e&w=826",
@@ -90,6 +91,8 @@ const Feed = () => {
     friendsCount: 23,
     postsCount: 34,
   };
+
+
 
   const deletePost = (id) => {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
