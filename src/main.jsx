@@ -10,6 +10,7 @@ import App from "./App.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import "./index.css";
 import Login from "./pages/Login.jsx";
+import Feed from "./pages/Feed.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path="" element={<h1>HOME</h1>} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
+      <Route path="feed" element={<Feed />} />
       <Route path="*" element={<h1>Page not found</h1>} />
     </Route>
   )
