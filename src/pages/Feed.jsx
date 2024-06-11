@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import FeedForm from "../components/FeedForm";
-
-
-const FeedItem = ({ post, deletePost }) => (
-  <div>
-    <p>{post.content}</p>
-    <button onClick={() => deletePost(post.id)}>Delete</button>
-  </div>
-);
+import FeedItem from "../components/FeedItem";
 
 const PeopleYouMayKnow = () => (
   <div className="p-4 bg-white border border-gray-200 rounded-lg">
@@ -49,9 +42,44 @@ const ProfileInfo = ({ user }) => (
 
 const Feed = () => {
   const [posts, setPosts] = useState([
-    { id: 1, content: "Post 1" },
-    { id: 2, content: "Post 2" },
-    { id: 3, content: "Post 3" },
+    {
+      id: 1,
+      created_by: {
+        id: 1,
+        name: "John Doe",
+        get_avatar:
+          "https://img.freepik.com/free-photo/3d-illustration-cute-cartoon-girl-blue-jacket-glasses_1142-41044.jpg?t=st=1718112683~exp=1718116283~hmac=f4c0d0d3d51bbbb6f09968f606e51c5c12064661816ea6c9f8ae374ea8697d9e&w=826",
+      },
+      created_at_formatted: "2 hours",
+      body: "This is a sample post body.",
+      attachments: [
+        {
+          id: 1,
+          get_image:
+            "https://img.freepik.com/free-photo/3d-illustration-cute-cartoon-girl-blue-jacket-glasses_1142-41044.jpg?t=st=1718112683~exp=1718116283~hmac=f4c0d0d3d51bbbb6f09968f606e51c5c12064661816ea6c9f8ae374ea8697d9e&w=826",
+        },
+      ],
+      likes_count: 10,
+      comments_count: 5,
+      is_private: false,
+    },
+
+    {
+      id: 1,
+      created_by: {
+        id: 1,
+        name: "John Doe",
+        get_avatar:
+          "https://img.freepik.com/free-photo/3d-illustration-cute-cartoon-girl-blue-jacket-glasses_1142-41044.jpg?t=st=1718112683~exp=1718116283~hmac=f4c0d0d3d51bbbb6f09968f606e51c5c12064661816ea6c9f8ae374ea8697d9e&w=826",
+      },
+      created_at_formatted: "2 hours",
+      body: "This is a sample post body.",
+      attachments: [
+      ],
+      likes_count: 10,
+      comments_count: 5,
+      is_private: false,
+    },
   ]);
 
   const user = {
