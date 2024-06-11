@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useToast } from "../context/ToastContext";
+import axios from "axios";
 
 const SignUp = () => {
+  const { showToast } = useToast();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -36,7 +39,38 @@ const SignUp = () => {
     const validationErrors = validateForm();
     setErrors(validationErrors);
     if (validationErrors.length === 0) {
-      console.log("Form submitted", form);
+      axios
+        .post("/api/signup/", form)
+        .then((response) => {
+          if (response.data.message === "success") {
+            showToast(
+              5000,
+              "The user is registered. Please log in",
+              "bg-emerald-500"
+            );
+
+            setForm({
+              email: "",
+              name: "",
+              password1: "",
+              password2: "",
+            });
+          } else {
+            const data = JSON.parse(response.data.message);
+            for (const key in data) {
+              setErrors((prevErrors) => [...prevErrors, data[key][0].message]);
+            }
+
+            showToast(
+              5000,
+              "Something went wrong. Please try again",
+              "bg-red-300"
+            );
+          }
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
     }
   };
 

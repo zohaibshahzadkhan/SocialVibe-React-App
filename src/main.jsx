@@ -13,6 +13,8 @@ import Login from "./pages/Login.jsx";
 import Feed from "./pages/Feed.jsx";
 import Chat from "./pages/Chat.jsx";
 import Search from "./pages/Search.jsx";
+import AppProviders from "./context/AppContext.jsx";
+import "./api/apiDefaults.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppProviders>
+      <RouterProvider router={router} />
+    </AppProviders>
   </React.StrictMode>
 );
