@@ -12,6 +12,7 @@ import "./index.css";
 import Login from "./pages/Login.jsx";
 import Feed from "./pages/Feed.jsx";
 import Chat from "./pages/Chat.jsx";
+import Search from "./pages/Search.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="feed" element={<Feed />} />
       <Route path="chat" element={<Chat />} />
+      <Route path="search" element={<Search />} />
       <Route path="*" element={<h1>Page not found</h1>} />
     </Route>
   )
