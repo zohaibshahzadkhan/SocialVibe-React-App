@@ -2,18 +2,7 @@ import React, { useState } from "react";
 import FeedForm from "../components/FeedForm";
 import FeedItem from "../components/FeedItem";
 import PeopleYouMayKnow from "../components/PeopleYouMayKnow";
-
-// const PeopleYouMayKnow = () => (
-//   <div className="p-4 bg-white border border-gray-200 rounded-lg">
-//     <p>People You May Know Component</p>
-//   </div>
-// );
-
-const Trends = () => (
-  <div className="p-4 bg-white border border-gray-200 rounded-lg">
-    <p>Trends Component</p>
-  </div>
-);
+import Trends from "../components/Trends";
 
 const ProfileInfo = ({ user }) => (
   <div className="p-4 bg-white border border-gray-200 rounded-lg text-center">
@@ -75,8 +64,7 @@ const Feed = () => {
       },
       created_at_formatted: "2 hours",
       body: "This is a sample post body.",
-      attachments: [
-      ],
+      attachments: [],
       likes_count: 10,
       comments_count: 5,
       is_private: false,
@@ -91,8 +79,6 @@ const Feed = () => {
     friendsCount: 23,
     postsCount: 34,
   };
-
-
 
   const deletePost = (id) => {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
