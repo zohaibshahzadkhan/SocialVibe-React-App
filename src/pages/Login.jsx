@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "../context/ToastContext";
+import { useUser } from "../context/UserContext";
+import axios from "axios";
 
 const Login = () => {
+  const { setToken, setUserInfo } = useUser();
+  const { showToast } = useToast();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -24,13 +30,33 @@ const Login = () => {
     return newErrors;
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     setErrors(validationErrors);
 
     if (validationErrors.length === 0) {
-      console.log("Form submitted", form);
+      try {
+        const response = await axios.post("/api/login/", form);
+        setToken(response.data);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + response.data.access;
+
+        const userResponse = await axios.get("/api/me/");
+        setUserInfo(userResponse.data);
+
+        navigate("/feed");
+      } catch (error) {
+        console.log("error", error);
+        setErrors([
+          "The email or password is incorrect! Or the user is not activated!",
+        ]);
+        showToast(
+          5000,
+          "The email or password is incorrect! Or the user is not activated!",
+          "bg-red-300"
+        );
+      }
     }
   };
 
