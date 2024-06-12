@@ -39,10 +39,12 @@ const Login = () => {
       try {
         const response = await axios.post("/api/login/", form);
         setToken(response.data);
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + response.data.access;
 
-        const userResponse = await axios.get("/api/me/");
+        const userResponse = await axios.get("/api/me/", {
+          headers: {
+            Authorization: `Bearer ${response.data.access}`,
+          },
+        });
         setUserInfo(userResponse.data);
 
         navigate("/feed");

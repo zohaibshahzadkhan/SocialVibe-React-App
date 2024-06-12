@@ -1,9 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import axios from "axios";
 
 const UserContext = createContext();
 
-// Create a provider component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     isAuthenticated: false,
@@ -15,24 +20,34 @@ export const UserProvider = ({ children }) => {
     avatar: null,
   });
 
+  const initStoreCalled = useRef(false); // To track if initStore has been called
+
   useEffect(() => {
-    initStore();
+    if (!initStoreCalled.current) {
+      initStore();
+      initStoreCalled.current = true;
+    }
   }, []);
 
   const initStore = () => {
-    if (localStorage.getItem("user.access")) {
-      console.log("User has access!");
+    const access = localStorage.getItem("user.access");
+    const refresh = localStorage.getItem("user.refresh");
+    const id = localStorage.getItem("user.id");
+    const name = localStorage.getItem("user.name");
+    const email = localStorage.getItem("user.email");
+    const avatar = localStorage.getItem("user.avatar");
 
+    if (access && refresh) {
       setUser({
-        access: localStorage.getItem("user.access"),
-        refresh: localStorage.getItem("user.refresh"),
-        id: localStorage.getItem("user.id"),
-        name: localStorage.getItem("user.name"),
-        email: localStorage.getItem("user.email"),
-        avatar: localStorage.getItem("user.avatar"),
+        access,
+        refresh,
+        id,
+        name,
+        email,
+        avatar,
         isAuthenticated: true,
       });
-      refreshToken();
+      refreshToken(refresh);
     }
   };
 
@@ -84,21 +99,19 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("user.avatar", userInfo.avatar);
   };
 
-  const refreshToken = () => {
+  const refreshToken = (refresh) => {
     axios
-      .post("/api/refresh/", {
-        refresh: user.refresh,
-      })
+      .post("/api/refresh/", { refresh })
       .then((response) => {
+        const newAccessToken = response.data.access;
         setUser((prevUser) => ({
           ...prevUser,
-          access: response.data.access,
+          access: newAccessToken,
         }));
 
-        localStorage.setItem("user.access", response.data.access);
-
+        localStorage.setItem("user.access", newAccessToken);
         axios.defaults.headers.common["Authorization"] =
-          "Bearer " + response.data.access;
+          "Bearer " + newAccessToken;
       })
       .catch((error) => {
         removeToken();
@@ -112,6 +125,7 @@ export const UserProvider = ({ children }) => {
         setToken,
         removeToken,
         setUserInfo,
+        initStore,
       }}
     >
       {children}
@@ -119,7 +133,6 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the User context
 export const useUser = () => {
   return useContext(UserContext);
 };
