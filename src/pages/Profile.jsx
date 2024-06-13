@@ -49,7 +49,7 @@ const ProfileInfo = () => {
 
 const Profile = () => {
   const { user } = useUser();
-  const { posts, getUserFeed } = usePosts();
+  const { posts, getUserFeed, postUser } = usePosts();
   const { userId } = useParams();
 
   useEffect(() => {
@@ -70,9 +70,11 @@ const Profile = () => {
         <ProfileInfo user={user} />
       </div>
       <div className="main-center col-span-3 space-y-4">
-        <div className="bg-white border border-gray-200 rounded-lg">
-          <FeedForm />
-        </div>
+        {user.id === postUser.id ? (
+          <div className="bg-white border border-gray-200 rounded-lg">
+            <FeedForm />
+          </div>
+        ) : null}
         {posts.map((post) => (
           <div
             className="p-4 bg-white border border-gray-200 rounded-lg"
