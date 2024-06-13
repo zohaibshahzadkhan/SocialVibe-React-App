@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { usePosts } from '../context/PostsContext';
 
-const FeedForm = ({ submitForm }) => {
+const FeedForm = () => {
+  const { submitPost } = usePosts();
   const [body, setBody] = useState('');
   const [url, setUrl] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -17,7 +20,14 @@ const FeedForm = ({ submitForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitForm({ body, url });
+    let formData = new FormData();
+    formData.append('image', fileInputRef.current.files[0]);
+    formData.append('body', body);
+    submitPost(formData);
+
+    setBody('');
+    fileInputRef.current.value = null;
+    setUrl(null);
   };
 
   return (
@@ -43,6 +53,7 @@ const FeedForm = ({ submitForm }) => {
             type="file"
             onChange={handleFileChange}
             className="hidden"
+            ref={fileInputRef}
           />
           Attach image
         </label>
