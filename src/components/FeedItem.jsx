@@ -30,9 +30,9 @@ const FeedItem = ({ post, deletePost }) => {
         <p className="text-gray-600">{post.created_at_formatted} ago</p>
       </div>
 
-      {post.attachments.length > 0 && (
+      {post.attachments && post.attachments.length > 0 && (
         <div>
-          {post.attachments.map((image) => (
+          {posts.attachments.map((image) => (
             <img
               key={image.id}
               src={image.get_image}

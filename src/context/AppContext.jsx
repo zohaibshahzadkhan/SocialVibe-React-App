@@ -1,11 +1,14 @@
 import React from "react";
 import { ToastProvider } from "./ToastContext";
 import { UserProvider } from "./UserContext";
+import { PostsProvider } from "./PostsContext";
 
 const AppProviders = ({ children }) => {
   return (
     <UserProvider>
-      <ToastProvider>{children}</ToastProvider>
+      <PostsProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </PostsProvider>
     </UserProvider>
   );
 };
