@@ -14,6 +14,7 @@ import Feed from "./pages/Feed.jsx";
 import Chat from "./pages/Chat.jsx";
 import Profile from "./pages/Profile.jsx";
 import Search from "./pages/Search.jsx";
+import Friends from "./pages/Friends.jsx";
 import AppProviders from "./context/AppContext.jsx";
 import "./api/apiDefaults.js";
 const router = createBrowserRouter(
@@ -25,8 +26,8 @@ const router = createBrowserRouter(
       <Route path="feed" element={<Feed />} />
       <Route path="chat" element={<Chat />} />
       <Route path="search" element={<Search />} />
+      <Route path="/profile/:userId/friends" element={<Friends />} />
       <Route path="/profile/:userId" element={<Profile />} />
-
       <Route path="*" element={<h1>Page not found</h1>} />
     </Route>
   )

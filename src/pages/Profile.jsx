@@ -5,12 +5,18 @@ import PeopleYouMayKnow from "../components/PeopleYouMayKnow";
 import Trends from "../components/Trends";
 import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
+import { useFriendship } from "../context/FriendshipContext";
+import { useToast } from "../context/ToastContext";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProfileInfo = () => {
   const { postUser, getUserFeed } = usePosts();
   const { userId } = useParams();
   const { user } = useUser();
+  const { sendFriendshipRequest, canSendFriendshipRequest } = useFriendship();
+  const { showToast } = useToast();
+
   useEffect(() => {
     if (user.isAuthenticated) {
       if (userId) {
@@ -18,6 +24,13 @@ const ProfileInfo = () => {
       }
     }
   }, [userId]);
+
+  const handleSendRequest = () => {
+    if (canSendFriendshipRequest) {
+      sendFriendshipRequest(userId, { showToast });
+    }
+  };
+
   return (
     <div className="p-4 bg-white border border-gray-200 rounded-lg text-center">
       <div className="flex flex-col items-center space-y-4">
@@ -35,13 +48,29 @@ const ProfileInfo = () => {
       </div>
       <div className="mt-4 flex justify-around">
         <div>
-          <p className="font-bold">Friends</p>
-          <p>{postUser.friendsCount || 0}</p>
+          <Link
+            to={`/profile/${userId}/friends`}
+            className="font-bold text-blue-500"
+          >
+            Friends
+          </Link>
+          <p>{postUser.friends_count || 0}</p>
         </div>
         <div>
           <p className="font-bold">Posts</p>
-          <p>{postUser.postsCount || 0}</p>
+          <p>{postUser.posts_count || 0}</p>
         </div>
+      </div>
+      <div className="mt-6">
+        <button
+          className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg"
+          onClick={handleSendRequest}
+          disabled={!canSendFriendshipRequest}
+        >
+          {canSendFriendshipRequest
+            ? "Send friendship request"
+            : "Request Sent"}
+        </button>
       </div>
     </div>
   );
