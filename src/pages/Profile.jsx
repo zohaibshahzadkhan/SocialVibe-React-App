@@ -17,7 +17,7 @@ const ProfileInfo = () => {
         getUserFeed(userId);
       }
     }
-  }, [userId, getUserFeed]);
+  }, [userId]);
   return (
     <div className="p-4 bg-white border border-gray-200 rounded-lg text-center">
       <div className="flex flex-col items-center space-y-4">
@@ -53,12 +53,10 @@ const Profile = () => {
   const { userId } = useParams();
 
   useEffect(() => {
-    if (user.isAuthenticated) {
-      if (userId) {
-        getUserFeed(userId);
-      }
+    if (user.isAuthenticated && userId) {
+      getUserFeed(userId);
     }
-  }, [user.isAuthenticated]);
+  }, [user.isAuthenticated, userId]);
 
   const deletePost = (id) => {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
