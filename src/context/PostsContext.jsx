@@ -7,6 +7,7 @@ export const PostsProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [postUser, setPostUser] = useState({})
 
   const getFeed = async () => {
     try {
@@ -23,7 +24,8 @@ export const PostsProvider = ({ children }) => {
   const getUserFeed = async (userId) => {
     try {
       const response = await axios.get(`/api/posts/profile/${userId}`);
-      setPosts(response.data);
+      setPosts(response.data.posts);
+      setPostUser(response.data.user)
     } catch (err) {
       console.error("error", err);
       setError(err);
@@ -44,7 +46,7 @@ export const PostsProvider = ({ children }) => {
 
   return (
     <PostsContext.Provider
-      value={{ posts, loading, error, submitPost, getUserFeed, getFeed }}
+      value={{ posts, loading, error, submitPost, getUserFeed, getFeed, postUser }}
     >
       {children}
     </PostsContext.Provider>
