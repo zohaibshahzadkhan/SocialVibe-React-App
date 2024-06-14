@@ -64,8 +64,6 @@ export const UserProvider = ({ children }) => {
   };
 
   const removeToken = () => {
-    console.log("removeToken");
-
     setUser({
       isAuthenticated: false,
       id: null,

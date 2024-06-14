@@ -3,14 +3,15 @@ import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
 import { useFriendship } from "../context/FriendshipContext";
 import { useToast } from "../context/ToastContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 const ProfileInfo = () => {
   const { postUser, getUserFeed } = usePosts();
   const { userId } = useParams();
-  const { user } = useUser();
+  const { user, removeToken } = useUser();
   const { sendFriendshipRequest, canSendFriendshipRequest } = useFriendship();
   const { showToast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user.isAuthenticated) {
@@ -24,6 +25,11 @@ const ProfileInfo = () => {
     if (canSendFriendshipRequest) {
       sendFriendshipRequest(userId, { showToast });
     }
+  };
+
+  const handleLogout = () => {
+    removeToken();
+    navigate("/");
   };
 
   const isOwnProfile = user.id === postUser.id;
@@ -59,7 +65,7 @@ const ProfileInfo = () => {
         </div>
       </div>
       <div className="mt-6">
-        {!isOwnProfile && (
+        {!isOwnProfile ? (
           <button
             className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg"
             onClick={handleSendRequest}
@@ -68,6 +74,13 @@ const ProfileInfo = () => {
             {canSendFriendshipRequest
               ? "Send friendship request"
               : "Request Sent"}
+          </button>
+        ) : (
+          <button
+            onClick={handleLogout}
+            className="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg"
+          >
+            Logout
           </button>
         )}
       </div>
