@@ -16,6 +16,8 @@ import Profile from "./pages/Profile.jsx";
 import Search from "./pages/Search.jsx";
 import Friends from "./pages/Friends.jsx";
 import AppProviders from "./context/AppContext.jsx";
+import Post from "./pages/Post.jsx";
+
 import "./api/apiDefaults.js";
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +30,7 @@ const router = createBrowserRouter(
       <Route path="search" element={<Search />} />
       <Route path="/profile/:userId/friends" element={<Friends />} />
       <Route path="/profile/:userId" element={<Profile />} />
+      <Route path="/post/:postId" element={<Post />} />
       <Route path="*" element={<h1>Page not found</h1>} />
     </Route>
   )

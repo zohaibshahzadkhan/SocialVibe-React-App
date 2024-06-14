@@ -5,9 +5,22 @@ const PostsContext = createContext();
 
 export const PostsProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState({ id: null, comments: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [postUser, setPostUser] = useState({});
+  const [body, setBody] = useState("");
+
+  const getPost = (postId) => {
+    axios
+      .get(`/api/posts/${postId}/`)
+      .then((response) => {
+        setPost(response.data.post);
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+  };
 
   const likePost = (id) => {
     axios
@@ -63,6 +76,25 @@ export const PostsProvider = ({ children }) => {
     }
   };
 
+  const submitPostForm = (postId) => (e) => {
+    e.preventDefault();
+    axios
+      .post(`/api/posts/${postId}/comment/`, { body })
+      .then((response) => {
+        console.log("data", response.data);
+
+        setPost((prevPost) => ({
+          ...prevPost,
+          comments: [...prevPost.comments, response.data],
+          comments_count: prevPost.comments_count + 1,
+        }));
+        setBody("");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
   return (
     <PostsContext.Provider
       value={{
@@ -73,7 +105,12 @@ export const PostsProvider = ({ children }) => {
         getUserFeed,
         getFeed,
         postUser,
-        likePost
+        likePost,
+        getPost,
+        post,
+        submitPostForm,
+        setBody,
+        body,
       }}
     >
       {children}
