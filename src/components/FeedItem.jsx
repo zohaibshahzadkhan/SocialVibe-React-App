@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { usePosts } from "../context/PostsContext";
 
 const FeedItem = ({ post, deletePost }) => {
   const [showExtraModal, setShowExtraModal] = useState(false);
+  const { likePost } = usePosts();
+
+  const handleLike = () => {
+    likePost(post.id); // Call likePost function with post id
+  };
 
   const toggleExtraModal = () => {
     setShowExtraModal(!showExtraModal);
@@ -55,6 +61,7 @@ const FeedItem = ({ post, deletePost }) => {
               strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6"
+              onClick={handleLike}
             >
               <path
                 strokeLinecap="round"
