@@ -7,7 +7,7 @@ const FeedItem = ({ post, deletePost }) => {
   const { likePost } = usePosts();
 
   const handleLike = () => {
-    likePost(post.id); // Call likePost function with post id
+    likePost(post.id);
   };
 
   const toggleExtraModal = () => {
@@ -38,7 +38,7 @@ const FeedItem = ({ post, deletePost }) => {
 
       {post.attachments && post.attachments.length > 0 && (
         <div>
-          {posts.attachments.map((image) => (
+          {post.attachments.map((image) => (
             <img
               key={image.id}
               src={image.get_image}

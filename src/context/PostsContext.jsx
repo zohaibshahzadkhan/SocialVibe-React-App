@@ -69,7 +69,6 @@ export const PostsProvider = ({ children }) => {
   const submitPost = async (formData) => {
     try {
       const response = await axios.post("/api/posts/create", formData);
-
       setPosts((prevPosts) => [response.data, ...prevPosts]);
     } catch (error) {
       console.error("error", error);
@@ -81,7 +80,6 @@ export const PostsProvider = ({ children }) => {
     axios
       .post(`/api/posts/${postId}/comment/`, { body })
       .then((response) => {
-        console.log("data", response.data);
 
         setPost((prevPost) => ({
           ...prevPost,
