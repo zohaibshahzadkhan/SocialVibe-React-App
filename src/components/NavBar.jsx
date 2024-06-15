@@ -89,8 +89,8 @@ const NavBar = () => {
             {user.isAuthenticated && user.id ? (
               <Link to={`/profile/${user.id}`}>
                 <img
-                  src="{userStore.user.avatar}"
-                  className="w-12 rounded-full"
+                  src={user.avatar}
+                  className="w-12 h-12 rounded-full"
                   alt="User Avatar"
                 />
               </Link>

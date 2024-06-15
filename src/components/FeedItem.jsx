@@ -21,7 +21,7 @@ const FeedItem = ({ post, deletePost }) => {
           <img
             src={post.created_by.get_avatar}
             alt="Avatar"
-            className="w-[40px] rounded-full"
+            className="w-[40px] h-[40px] rounded-full"
           />
 
           <p>

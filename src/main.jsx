@@ -15,6 +15,7 @@ import Chat from "./pages/Chat.jsx";
 import Profile from "./pages/Profile.jsx";
 import Search from "./pages/Search.jsx";
 import Friends from "./pages/Friends.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
 import AppProviders from "./context/AppContext.jsx";
 import Post from "./pages/Post.jsx";
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
       <Route path="feed" element={<Feed />} />
       <Route path="chat" element={<Chat />} />
       <Route path="search" element={<Search />} />
+      <Route path="/profile/edit" element={<EditProfile />} />
       <Route path="/profile/:userId/friends" element={<Friends />} />
       <Route path="/profile/:userId" element={<Profile />} />
       <Route path="/post/:postId" element={<Post />} />

@@ -5,6 +5,7 @@ import { useFriendship } from "../context/FriendshipContext";
 import { useToast } from "../context/ToastContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 const ProfileInfo = () => {
   const { postUser, getUserFeed } = usePosts();
   const { userId } = useParams();
@@ -38,7 +39,7 @@ const ProfileInfo = () => {
     <div className="p-4 bg-white border border-gray-200 rounded-lg text-center">
       <div className="flex flex-col items-center space-y-4">
         <img
-          src={postUser.avatar || "https://via.placeholder.com/50"}
+          src={postUser.get_avatar || "https://via.placeholder.com/50"}
           alt="Profile"
           className="w-16 h-16 rounded-full"
         />
@@ -76,12 +77,20 @@ const ProfileInfo = () => {
               : "Request Sent"}
           </button>
         ) : (
-          <button
-            onClick={handleLogout}
-            className="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg"
-          >
-            Logout
-          </button>
+          <div className="space-y-4">
+            <Link
+              to="/profile/edit"
+              className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg mr-2"
+            >
+              Edit
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg"
+            >
+              Logout
+            </button>
+          </div>
         )}
       </div>
     </div>
