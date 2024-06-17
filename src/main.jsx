@@ -18,12 +18,13 @@ import Friends from "./pages/Friends.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
 import AppProviders from "./context/AppContext.jsx";
 import Post from "./pages/Post.jsx";
-
+import Home from "./pages/Home.jsx";
 import "./api/apiDefaults.js";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="" element={<h1>HOME</h1>} />
+      <Route path="" element={<Home />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
       <Route path="feed" element={<Feed />} />
