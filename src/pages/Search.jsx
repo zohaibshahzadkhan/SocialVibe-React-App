@@ -108,11 +108,6 @@ const Search = () => {
           </>
         )}
       </div>
-
-      <div className="main-right col-span-1 space-y-4">
-        <PeopleYouMayKnow />
-        <Trends />
-      </div>
     </div>
   );
 };

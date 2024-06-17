@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import FeedForm from "../components/FeedForm";
 import FeedItem from "../components/FeedItem";
-import PeopleYouMayKnow from "../components/PeopleYouMayKnow";
-import Trends from "../components/Trends";
 import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
 import { useParams } from "react-router-dom";
@@ -42,10 +40,6 @@ const Profile = () => {
             <FeedItem post={post} onDeletePost={deletePost} />
           </div>
         ))}
-      </div>
-      <div className="main-right col-span-1 space-y-4">
-        <PeopleYouMayKnow />
-        <Trends />
       </div>
     </div>
   );
