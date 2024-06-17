@@ -42,6 +42,20 @@ export const PostsProvider = ({ children }) => {
       });
   };
 
+  const incrementPostCount = () => {
+    setPostUser((prevUser) => ({
+      ...prevUser,
+      posts_count: (prevUser.posts_count || 0) + 1,
+    }));
+  };
+
+  const decrementPostCount = () => {
+    setPostUser((prevUser) => ({
+      ...prevUser,
+      posts_count: Math.max((prevUser.posts_count || 0) - 1, 0),
+    }));
+  };
+
   const getFeed = async () => {
     try {
       const response = await axios.get("/api/posts");
@@ -71,6 +85,7 @@ export const PostsProvider = ({ children }) => {
     try {
       const response = await axios.post("/api/posts/create", formData);
       setPosts((prevPosts) => [response.data, ...prevPosts]);
+      incrementPostCount();
     } catch (error) {
       console.error("error", error);
     }
@@ -80,15 +95,10 @@ export const PostsProvider = ({ children }) => {
     axios
       .delete(`/api/posts/${postId}/delete`)
       .then(() => {
-        showToast(5000, "Post deleted successfully", "bg-emerald-500");
+        decrementPostCount();
         onDeleteSuccess(postId, onDeleteSuccess);
       })
       .catch((error) => {
-        showToast(
-          5000,
-          "Failed to delete the post. Please try again",
-          "bg-red-300"
-        );
         console.error("error", error);
       });
   };
@@ -128,6 +138,8 @@ export const PostsProvider = ({ children }) => {
         body,
         deletePost,
         setPosts,
+        incrementPostCount,
+        decrementPostCount,
       }}
     >
       {children}
