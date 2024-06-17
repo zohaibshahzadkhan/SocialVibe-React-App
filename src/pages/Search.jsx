@@ -1,7 +1,5 @@
 import React from 'react';
 import FeedItem from '../components/FeedItem';
-import PeopleYouMayKnow from '../components/PeopleYouMayKnow';
-import Trends from '../components/Trends';
 import { useSearch } from '../context/SearchContext';
 
 const Search = () => {
@@ -31,7 +29,7 @@ const Search = () => {
 
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
-      <div className="main-left col-span-3 space-y-4">
+      <div className="main-left col-span-4 space-y-4">
         <div className="bg-white border border-gray-200 rounded-lg">
           <form onSubmit={(e) => { e.preventDefault(); submitForm(); }} className="p-4 flex space-x-4">
             <input

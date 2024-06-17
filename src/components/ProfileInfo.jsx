@@ -50,7 +50,7 @@ const ProfileInfo = () => {
           </p>
         </div>
       </div>
-      <div className="mt-4 flex justify-around">
+      <div className=" flex justify-around">
         <div>
           <Link
             to={`/profile/${userId}/friends`}
@@ -65,7 +65,7 @@ const ProfileInfo = () => {
           <p>{postUser.posts_count || 0}</p>
         </div>
       </div>
-      <div className="mt-6">
+      <div >
         {!isOwnProfile ? (
           <button
             className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg"
@@ -80,13 +80,13 @@ const ProfileInfo = () => {
           <div className="space-y-4">
             <Link
               to="/profile/edit"
-              className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg mr-2"
+              className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg mr-2 w-40"
             >
               Edit
             </Link>
             <button
               onClick={handleLogout}
-              className="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg"
+              className="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg w-40"
             >
               Logout
             </button>

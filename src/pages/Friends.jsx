@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useFriendship } from "../context/FriendshipContext";
 import { useUser } from "../context/UserContext";
 import { usePosts } from "../context/PostsContext";
-import PeopleYouMayKnow from "../components/PeopleYouMayKnow";
-import Trends from "../components/Trends";
 
 const Friends = () => {
   const { user } = useUser();
@@ -125,11 +123,6 @@ const Friends = () => {
             ))}
           </div>
         )}
-      </div>
-
-      <div className="main-right col-span-1 space-y-4">
-        <PeopleYouMayKnow />
-        <Trends />
       </div>
     </div>
   );

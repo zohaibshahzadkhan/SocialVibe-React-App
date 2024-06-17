@@ -19,7 +19,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-5 gap-4">
+    <div className="max-w-7xl mx-auto grid grid-cols-2 gap-4">
       <div className="main-center col-span-4 space-y-4">
         <div className="bg-white border border-gray-200 rounded-lg">
           <FeedForm />

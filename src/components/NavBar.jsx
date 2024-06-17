@@ -15,7 +15,7 @@ const NavBar = () => {
           </div>
           {user.isAuthenticated && (
             <div className="menu-center flex space-x-12">
-              <Link to="/feed" className="text-purple-700">
+              <Link to="/feed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

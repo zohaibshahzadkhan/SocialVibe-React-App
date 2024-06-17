@@ -22,8 +22,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-5 gap-4">
-      <div className="main-left col-span-1 space-y-4">
+    <div className="max-w-7xl mx-auto grid grid-cols-2 gap-4">
+      <div className="main-left col-span-3 space-y-2">
         <ProfileInfo />
       </div>
       <div className="main-center col-span-3 space-y-4">

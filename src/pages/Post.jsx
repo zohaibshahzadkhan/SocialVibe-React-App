@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import PeopleYouMayKnow from "../components/PeopleYouMayKnow";
-import Trends from "../components/Trends";
 import FeedItem from "../components/FeedItem";
 import CommentItem from "../components/CommentItem";
 import { useParams } from "react-router-dom";
@@ -17,7 +15,7 @@ const Post = () => {
 
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
-      <div className="main-center col-span-3 space-y-4">
+      <div className="main-center col-span-4 space-y-4">
         {post.id && (
           <div className="p-4 bg-white border border-gray-200 rounded-lg">
             <FeedItem post={post} />
@@ -54,11 +52,6 @@ const Post = () => {
             </div>
           </form>
         </div>
-      </div>
-
-      <div className="main-right col-span-1 space-y-4">
-        <PeopleYouMayKnow />
-        <Trends />
       </div>
     </div>
   );
