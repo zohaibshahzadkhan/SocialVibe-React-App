@@ -5,6 +5,7 @@ import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
 import { useParams } from "react-router-dom";
 import ProfileInfo from "../components/ProfileInfo";
+import "../styles/Profile.css";
 
 const Profile = () => {
   const { user } = useUser();
@@ -22,19 +23,19 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-2 gap-4">
-      <div className="main-left col-span-3 space-y-2">
+    <div className="profile-page max-w-7xl mx-auto grid gap-4">
+      <div className="profile-info">
         <ProfileInfo />
       </div>
-      <div className="main-center col-span-3 space-y-4">
+      <div className="profile-posts">
         {user.id === postUser.id ? (
-          <div className="bg-white border border-gray-200 rounded-lg">
+          <div className="feed-form-container bg-white border border-gray-200 rounded-lg mb-4">
             <FeedForm />
           </div>
         ) : null}
         {posts.map((post) => (
           <div
-            className="p-4 bg-white border border-gray-200 rounded-lg"
+            className="p-4 bg-white border border-gray-200 rounded-lg mb-4"
             key={post.id}
           >
             <FeedItem post={post} onDeletePost={deletePost} />

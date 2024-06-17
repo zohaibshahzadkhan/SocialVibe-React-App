@@ -1,0 +1,38 @@
+.profile-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.profile-info, .feed-form-container {
+  width: 100%;
+}
+
+.profile-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .profile-page {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .profile-info {
+    margin: 0;
+    width: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-page {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .profile-info {
+    margin: 0;
+    width: auto;
+  }
+}

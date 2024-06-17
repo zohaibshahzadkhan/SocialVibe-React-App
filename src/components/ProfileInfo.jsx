@@ -5,6 +5,7 @@ import { useFriendship } from "../context/FriendshipContext";
 import { useToast } from "../context/ToastContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../styles/ProfileInfo.css";
 
 const ProfileInfo = () => {
   const { postUser, getUserFeed } = usePosts();
@@ -36,39 +37,36 @@ const ProfileInfo = () => {
   const isOwnProfile = user.id === postUser.id;
 
   return (
-    <div className="p-4 bg-white border border-gray-200 rounded-lg text-center">
-      <div className="flex flex-col items-center space-y-4">
+    <div className="profile-container">
+      <div className="profile-header">
         <img
-          src={postUser.get_avatar || "https://via.placeholder.com/50"}
+          src={postUser.get_avatar || "https://via.placeholder.com/150"}
           alt="Profile"
-          className="w-24 h-24 rounded-full"
+          className="profile-avatar"
         />
-        <div>
-          <p className="font-bold">{postUser.name || "User Name"}</p>
-          <p className="text-gray-500">
+        <div className="profile-details">
+          <p className="profile-name">{postUser.name || "User Name"}</p>
+          <p className="profile-email">
             {postUser.email || "user@example.com"}
           </p>
         </div>
       </div>
-      <div className=" flex justify-around">
-        <div>
-          <Link
-            to={`/profile/${userId}/friends`}
-            className="font-bold text-blue-500"
-          >
+      <div className="profile-stats">
+        <div className="stat-item">
+          <Link to={`/profile/${userId}/friends`} className="stat-link">
             Friends
           </Link>
-          <p>{postUser.friends_count || 0}</p>
+          <p className="stat-count">{postUser.friends_count || 0}</p>
         </div>
-        <div>
-          <p className="font-bold">Posts</p>
-          <p>{postUser.posts_count || 0}</p>
+        <div className="stat-item">
+          <p className="stat-label">Posts</p>
+          <p className="stat-count">{postUser.posts_count || 0}</p>
         </div>
       </div>
-      <div >
+      <div className="profile-actions">
         {!isOwnProfile ? (
           <button
-            className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg"
+            className="action-button"
             onClick={handleSendRequest}
             disabled={!canSendFriendshipRequest}
           >
@@ -77,17 +75,11 @@ const ProfileInfo = () => {
               : "Request Sent"}
           </button>
         ) : (
-          <div className="space-y-4">
-            <Link
-              to="/profile/edit"
-              className="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg mr-2 w-40"
-            >
+          <div className="own-profile-actions">
+            <Link to="/profile/edit" className="edit-button">
               Edit
             </Link>
-            <button
-              onClick={handleLogout}
-              className="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg w-40"
-            >
+            <button onClick={handleLogout} className="logout-button">
               Logout
             </button>
           </div>

@@ -1,22 +1,16 @@
-import React from 'react';
-import FeedItem from '../components/FeedItem';
-import { useSearch } from '../context/SearchContext';
+import React from "react";
+import FeedItem from "../components/FeedItem";
+import { useSearch } from "../context/SearchContext";
+import "../styles/Search.css";  // Import the custom CSS file
 
 const Search = () => {
-  const {
-    query,
-    setQuery,
-    users,
-    posts,
-    submitForm,
-    setUsers,
-    setPosts
-  } = useSearch();
+  const { query, setQuery, users, posts, submitForm, setUsers, setPosts } =
+    useSearch();
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setQuery(inputValue);
-    if (inputValue === '') {
+    if (inputValue === "") {
       setUsers([]);
       setPosts([]);
     }
@@ -26,12 +20,17 @@ const Search = () => {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
   };
 
-
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
       <div className="main-left col-span-4 space-y-4">
         <div className="bg-white border border-gray-200 rounded-lg">
-          <form onSubmit={(e) => { e.preventDefault(); submitForm(); }} className="p-4 flex space-x-4">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              submitForm();
+            }}
+            className="p-4 flex space-x-4"
+          >
             <input
               type="search"
               value={query}
@@ -64,7 +63,7 @@ const Search = () => {
         {query && (
           <>
             {users.length > 0 && (
-              <div className="p-4 bg-white border border-gray-200 rounded-lg grid grid-cols-4 gap-4">
+              <div className="p-4 bg-white border border-gray-200 rounded-lg users-grid">
                 {users.map((user) => (
                   <div
                     key={user.id}
@@ -74,7 +73,7 @@ const Search = () => {
                       <img
                         src={user.get_avatar}
                         alt="avatar"
-                        className="mb-6 rounded-full"
+                        className="user-avatar mb-6 mx-auto"
                       />
                       <p>
                         <strong>{user.name}</strong>
@@ -93,16 +92,15 @@ const Search = () => {
               </div>
             )}
 
-            {posts.length > 0 && (
+            {posts.length > 0 &&
               posts.map((post) => (
                 <div
                   key={post.id}
                   className="p-4 bg-white border border-gray-200 rounded-lg"
                 >
-                  <FeedItem post={post} onDeletePost={deletePost}/>
+                  <FeedItem post={post} onDeletePost={deletePost} />
                 </div>
-              ))
-            )}
+              ))}
           </>
         )}
       </div>

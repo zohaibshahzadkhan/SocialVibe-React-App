@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import FeedForm from "../components/FeedForm";
 import FeedItem from "../components/FeedItem";
 import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
 
 const Feed = () => {
-  const { posts, getFeed,setPosts } = usePosts();
+  const { posts, getFeed, setPosts } = usePosts();
   const { user } = useUser();
 
   useEffect(() => {
-      if (user.isAuthenticated) {
-          getFeed();
-      }
+    if (user.isAuthenticated) {
+      getFeed();
+    }
   }, [user.isAuthenticated]);
 
   const deletePost = (id) => {

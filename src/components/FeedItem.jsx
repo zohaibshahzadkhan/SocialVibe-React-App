@@ -124,7 +124,7 @@ const FeedItem = ({ post, onDeletePost }) => {
 
       {showExtraModal && user && user.id === post.created_by.id && (
         <div>
-          <div className="flex space-x-6 items-center">
+          <div className="flex justify-end space-x-6 items-center">
             <div className="flex items-center space-x-2" onClick={handleDelete}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
