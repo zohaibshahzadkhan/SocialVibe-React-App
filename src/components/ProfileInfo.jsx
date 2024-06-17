@@ -41,7 +41,7 @@ const ProfileInfo = () => {
         <img
           src={postUser.get_avatar || "https://via.placeholder.com/50"}
           alt="Profile"
-          className="w-16 h-16 rounded-full"
+          className="w-24 h-24 rounded-full"
         />
         <div>
           <p className="font-bold">{postUser.name || "User Name"}</p>
