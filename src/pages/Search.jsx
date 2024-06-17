@@ -24,6 +24,11 @@ const Search = () => {
     }
   };
 
+  const deletePost = (id) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  };
+
+
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
       <div className="main-left col-span-3 space-y-4">
@@ -96,7 +101,7 @@ const Search = () => {
                   key={post.id}
                   className="p-4 bg-white border border-gray-200 rounded-lg"
                 >
-                  <FeedItem post={post} />
+                  <FeedItem post={post} onDeletePost={deletePost}/>
                 </div>
               ))
             )}

@@ -7,15 +7,15 @@ import { FriendshipProvider } from "./FriendshipContext";
 
 const AppProviders = ({ children }) => {
   return (
-    <UserProvider>
-      <PostsProvider>
-        <SearchProvider>
-          <FriendshipProvider>
-            <ToastProvider>{children}</ToastProvider>
-          </FriendshipProvider>
-        </SearchProvider>
-      </PostsProvider>
-    </UserProvider>
+    <ToastProvider>
+      <UserProvider>
+        <PostsProvider>
+          <SearchProvider>
+            <FriendshipProvider>{children}</FriendshipProvider>
+          </SearchProvider>
+        </PostsProvider>
+      </UserProvider>
+    </ToastProvider>
   );
 };
 

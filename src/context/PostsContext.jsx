@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
-
+import { useToast } from "../context/ToastContext";
 const PostsContext = createContext();
 
 export const PostsProvider = ({ children }) => {
@@ -10,6 +10,7 @@ export const PostsProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [postUser, setPostUser] = useState({});
   const [body, setBody] = useState("");
+  const { showToast } = useToast();
 
   const getPost = (postId) => {
     axios
@@ -75,12 +76,28 @@ export const PostsProvider = ({ children }) => {
     }
   };
 
+  const deletePost = (postId, onDeleteSuccess) => {
+    axios
+      .delete(`/api/posts/${postId}/delete`)
+      .then(() => {
+        showToast(5000, "Post deleted successfully", "bg-emerald-500");
+        onDeleteSuccess(postId, onDeleteSuccess);
+      })
+      .catch((error) => {
+        showToast(
+          5000,
+          "Failed to delete the post. Please try again",
+          "bg-red-300"
+        );
+        console.error("error", error);
+      });
+  };
+
   const submitPostForm = (postId) => (e) => {
     e.preventDefault();
     axios
       .post(`/api/posts/${postId}/comment/`, { body })
       .then((response) => {
-
         setPost((prevPost) => ({
           ...prevPost,
           comments: [...prevPost.comments, response.data],
@@ -109,6 +126,8 @@ export const PostsProvider = ({ children }) => {
         submitPostForm,
         setBody,
         body,
+        deletePost,
+        setPosts,
       }}
     >
       {children}

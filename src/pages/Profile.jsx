@@ -10,7 +10,7 @@ import ProfileInfo from "../components/ProfileInfo";
 
 const Profile = () => {
   const { user } = useUser();
-  const { posts, getUserFeed, postUser } = usePosts();
+  const { posts, getUserFeed, postUser, setPosts } = usePosts();
   const { userId } = useParams();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Profile = () => {
             className="p-4 bg-white border border-gray-200 rounded-lg"
             key={post.id}
           >
-            <FeedItem post={post} deletePost={deletePost} />
+            <FeedItem post={post} onDeletePost={deletePost} />
           </div>
         ))}
       </div>

@@ -7,7 +7,7 @@ import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
 
 const Feed = () => {
-  const { posts, getFeed } = usePosts();
+  const { posts, getFeed,setPosts } = usePosts();
   const { user } = useUser();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Feed = () => {
             className="p-4 bg-white border border-gray-200 rounded-lg"
             key={post.id}
           >
-            <FeedItem post={post} deletePost={deletePost} />
+            <FeedItem post={post} onDeletePost={deletePost} />
           </div>
         ))}
       </div>
