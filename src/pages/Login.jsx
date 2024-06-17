@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../context/ToastContext";
 import { useUser } from "../context/UserContext";
 import axios from "axios";
+import "../styles/Login.css";
 
 const Login = () => {
   const { setToken, setUserInfo } = useUser();
@@ -63,8 +64,8 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-2 gap-4">
-      <div className="main-left">
+    <div className="login-max-w-7xl mx-auto login-grid login-grid-cols-2 gap-4">
+      <div className="login-main-left">
         <div className="p-12 bg-white border border-gray-200 rounded-lg">
           <h1 className="mb-6 text-2xl">Log in</h1>
 
@@ -82,7 +83,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="main-right">
+      <div className="login-main-right">
         <div className="p-12 bg-white border border-gray-200 rounded-lg">
           <form className="space-y-6" onSubmit={submitForm}>
             <div>

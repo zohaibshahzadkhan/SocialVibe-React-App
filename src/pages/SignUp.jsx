@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "../context/ToastContext";
 import axios from "axios";
+import "../styles/SignUp.css";
 
 const SignUp = () => {
   const { showToast } = useToast();
@@ -75,8 +76,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-2 gap-4">
-      <div className="main-left">
+    <div className="signup-max-w-7xl mx-auto signup-grid signup-grid-cols-2 gap-4">
+      <div className="signup-main-left">
         <div className="p-12 bg-white border border-gray-200 rounded-lg">
           <h1 className="mb-6 text-2xl">Sign up</h1>
 
@@ -95,7 +96,7 @@ const SignUp = () => {
         </div>
       </div>
 
-      <div className="main-right">
+      <div className="signup-main-right">
         <div className="p-12 bg-white border border-gray-200 rounded-lg">
           <form className="space-y-6" onSubmit={submitForm}>
             <div>

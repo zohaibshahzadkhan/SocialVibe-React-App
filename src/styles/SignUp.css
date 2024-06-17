@@ -1,0 +1,22 @@
+/* Media query for screens smaller than 768px (tablet and mobile sizes) */
+@media (max-width: 768px) {
+  .signup-max-w-7xl {
+    display: block;
+    margin: 0 auto;
+    max-width: 95%;
+  }
+
+  .signup-main-left,
+  .signup-main-right {
+    width: 100%;
+    margin: 0;
+  }
+
+  .signup-main-left {
+    margin-bottom: 1rem;
+  }
+
+  .signup-grid {
+    display: block;
+  }
+}

@@ -1,0 +1,22 @@
+/* Media query for screens smaller than 768px (tablet and mobile sizes) */
+@media (max-width: 768px) {
+  .login-max-w-7xl {
+    display: block;
+    margin: 0 auto; 
+    max-width: 95%;
+  }
+
+  .login-main-left,
+  .login-main-right {
+    width: 100%; 
+    margin: 0;
+  }
+
+  .login-main-left {
+    margin-bottom: 1rem;
+  }
+
+  .login-grid {
+    display: block;
+  }
+}
