@@ -81,9 +81,8 @@ const SignUp = () => {
           <h1 className="mb-6 text-2xl">Sign up</h1>
 
           <p className="mb-6 text-gray-500">
-            Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum
-            dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit
-            mate. Lorem ipsum dolor sit mate.
+            Join us today! Creating an account is quick and easy. Start
+            connecting with friends and sharing your stories right away.
           </p>
 
           <p className="font-bold">

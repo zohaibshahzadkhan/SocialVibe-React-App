@@ -69,9 +69,7 @@ const Login = () => {
           <h1 className="mb-6 text-2xl">Log in</h1>
 
           <p className="mb-6 text-gray-500">
-            Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum
-            dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit
-            mate. Lorem ipsum dolor sit mate.
+            Welcome! Log in to your account to access all features and updates.
           </p>
 
           <p className="font-bold">

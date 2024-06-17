@@ -30,7 +30,7 @@ const ProfileInfo = () => {
 
   const handleLogout = () => {
     removeToken();
-    navigate("/");
+    navigate("/login");
   };
 
   const isOwnProfile = user.id === postUser.id;

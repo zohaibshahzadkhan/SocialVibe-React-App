@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useToast } from "../context/ToastContext";
 const PostsContext = createContext();
 
 export const PostsProvider = ({ children }) => {
@@ -10,7 +9,6 @@ export const PostsProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [postUser, setPostUser] = useState({});
   const [body, setBody] = useState("");
-  const { showToast } = useToast();
 
   const getPost = (postId) => {
     axios
