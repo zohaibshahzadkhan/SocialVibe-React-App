@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import FeedItem from "../components/FeedItem";
-import CommentItem from "../components/CommentItem";
-import { useParams } from "react-router-dom";
-import { usePosts } from "../context/PostsContext";
+import React, { useEffect } from 'react';
+import FeedItem from '../components/FeedItem';
+import CommentItem from '../components/CommentItem';
+import { useParams } from 'react-router-dom';
+import { usePosts } from '../context/PostsContext';
 
 const Post = () => {
   const { post, getPost, submitPostForm, body, setBody } = usePosts();

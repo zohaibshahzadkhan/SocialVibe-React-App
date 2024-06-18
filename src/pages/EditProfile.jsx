@@ -1,9 +1,12 @@
-import React, { useState, useRef } from "react";
-import { useUser } from "../context/UserContext";
+import React, { useState, useRef } from 'react';
+import { useUser } from '../context/UserContext';
 
 const EditProfile = () => {
   const { user, errors, submitForm } = useUser();
-  const [form, setForm] = useState({ email: user.email || "", name: user.name || "" });
+  const [form, setForm] = useState({
+    email: user.email || '',
+    name: user.name || '',
+  });
   const fileRef = useRef(null);
 
   const handleChange = (e) => {

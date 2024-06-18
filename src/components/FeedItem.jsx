@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { usePosts } from "../context/PostsContext";
-import { useUser } from "../context/UserContext";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { usePosts } from '../context/PostsContext';
+import { useUser } from '../context/UserContext';
 
 const FeedItem = ({ post, onDeletePost }) => {
   const [showExtraModal, setShowExtraModal] = useState(false);

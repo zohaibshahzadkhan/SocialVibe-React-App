@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import NavBar from "./components/NavBar";
-import { Outlet } from "react-router-dom";
-import Toast from "./components/Toast";
-import axios from "axios";
-import { useUser } from "./context/UserContext";
-import Footer from "./components/Footer";
+import React, { useEffect, useRef } from 'react';
+import NavBar from './components/NavBar';
+import { Outlet } from 'react-router-dom';
+import Toast from './components/Toast';
+import axios from 'axios';
+import { useUser } from './context/UserContext';
+import Footer from './components/Footer';
 
 function App() {
   const { user, initStore } = useUser();
@@ -20,9 +20,9 @@ function App() {
   useEffect(() => {
     const token = user.access;
     if (token) {
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     } else {
-      axios.defaults.headers.common["Authorization"] = "";
+      axios.defaults.headers.common['Authorization'] = '';
     }
   }, [user.access]);
 

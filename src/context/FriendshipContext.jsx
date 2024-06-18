@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
-import axios from "axios";
+import React, { createContext, useContext, useState } from 'react';
+import axios from 'axios';
 
 const FriendshipContext = createContext();
 
@@ -17,17 +17,17 @@ export const FriendshipProvider = ({ children }) => {
       const response = await axios.post(`/api/friends/${userId}/request/`);
       setCanSendFriendshipRequest(false);
 
-      if (response.data.message === "request already sent") {
+      if (response.data.message === 'request already sent') {
         toastStore.showToast(
           5000,
-          "The request has already been sent!",
-          "bg-red-300"
+          'The request has already been sent!',
+          'bg-red-300'
         );
       } else {
-        toastStore.showToast(5000, "The request was sent!", "bg-emerald-300");
+        toastStore.showToast(5000, 'The request was sent!', 'bg-emerald-300');
       }
     } catch (error) {
-      console.log("error", error);
+      console.log('error', error);
     }
   };
 
@@ -38,7 +38,7 @@ export const FriendshipProvider = ({ children }) => {
       setFriends(response.data.friends);
       setUser(response.data.user);
     } catch (error) {
-      console.error("Error fetching friends:", error);
+      console.error('Error fetching friends:', error);
     }
   };
 
@@ -46,7 +46,7 @@ export const FriendshipProvider = ({ children }) => {
     try {
       await axios.post(`/api/friends/${userId}/${status}/`);
     } catch (error) {
-      console.error("Error handling request:", error);
+      console.error('Error handling request:', error);
     }
   };
 

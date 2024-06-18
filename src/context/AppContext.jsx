@@ -1,9 +1,9 @@
-import React from "react";
-import { ToastProvider } from "./ToastContext";
-import { UserProvider } from "./UserContext";
-import { PostsProvider } from "./PostsContext";
-import { SearchProvider } from "./SearchContext";
-import { FriendshipProvider } from "./FriendshipContext";
+import React from 'react';
+import { ToastProvider } from './ToastContext';
+import { UserProvider } from './UserContext';
+import { PostsProvider } from './PostsContext';
+import { SearchProvider } from './SearchContext';
+import { FriendshipProvider } from './FriendshipContext';
 
 const AppProviders = ({ children }) => {
   return (

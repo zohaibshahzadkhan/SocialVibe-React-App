@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useUser } from "../context/UserContext";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 const NavBar = () => {
   const { user } = useUser();

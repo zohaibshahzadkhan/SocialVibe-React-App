@@ -42,7 +42,11 @@ const FeedForm = () => {
 
         {url && (
           <div id="preview">
-            <img src={url} alt="Preview" className="w-[100px] mt-3 rounded-xl" />
+            <img
+              src={url}
+              alt="Preview"
+              className="w-[100px] mt-3 rounded-xl"
+            />
           </div>
         )}
       </div>
@@ -58,7 +62,10 @@ const FeedForm = () => {
           Attach image
         </label>
 
-        <button type="submit" className="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">
+        <button
+          type="submit"
+          className="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg"
+        >
           Post
         </button>
       </div>

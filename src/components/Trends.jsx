@@ -25,10 +25,14 @@ const Trends = () => {
         {trends.map((trend) => (
           <div key={trend.id} className="flex items-center justify-between">
             <p className="text-xs">
-              <strong>#{trend.hashtag}</strong><br />
+              <strong>#{trend.hashtag}</strong>
+              <br />
               <span className="text-gray-500">{trend.occurences} posts</span>
             </p>
-            <Link to={`/trendview/${trend.hashtag}`} className="py-2 px-3 bg-purple-600 text-white text-xs rounded-lg">
+            <Link
+              to={`/trendview/${trend.hashtag}`}
+              className="py-2 px-3 bg-purple-600 text-white text-xs rounded-lg"
+            >
               Explore
             </Link>
           </div>

@@ -1,7 +1,7 @@
-import React from "react";
-import FeedItem from "../components/FeedItem";
-import { useSearch } from "../context/SearchContext";
-import "../styles/Search.css";  // Import the custom CSS file
+import React from 'react';
+import FeedItem from '../components/FeedItem';
+import { useSearch } from '../context/SearchContext';
+import '../styles/Search.css'; // Import the custom CSS file
 
 const Search = () => {
   const { query, setQuery, users, posts, submitForm, setUsers, setPosts } =
@@ -10,7 +10,7 @@ const Search = () => {
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setQuery(inputValue);
-    if (inputValue === "") {
+    if (inputValue === '') {
       setUsers([]);
       setPosts([]);
     }

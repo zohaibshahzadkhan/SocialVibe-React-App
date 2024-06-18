@@ -5,7 +5,8 @@
   padding: 16px;
 }
 
-.profile-info, .feed-form-container {
+.profile-info,
+.feed-form-container {
   width: 100%;
 }
 

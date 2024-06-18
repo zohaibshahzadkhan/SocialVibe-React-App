@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 const PostsContext = createContext();
 
 export const PostsProvider = ({ children }) => {
@@ -8,7 +8,7 @@ export const PostsProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [postUser, setPostUser] = useState({});
-  const [body, setBody] = useState("");
+  const [body, setBody] = useState('');
 
   const getPost = (postId) => {
     axios
@@ -17,7 +17,7 @@ export const PostsProvider = ({ children }) => {
         setPost(response.data.post);
       })
       .catch((error) => {
-        console.error("error", error);
+        console.error('error', error);
       });
   };
 
@@ -25,7 +25,7 @@ export const PostsProvider = ({ children }) => {
     axios
       .post(`/api/posts/${id}/like/`)
       .then((response) => {
-        if (response.data.message === "like created") {
+        if (response.data.message === 'like created') {
           setPosts((prevPosts) =>
             prevPosts.map((post) =>
               post.id === id
@@ -36,7 +36,7 @@ export const PostsProvider = ({ children }) => {
         }
       })
       .catch((error) => {
-        console.log("Error liking post:", error);
+        console.log('Error liking post:', error);
       });
   };
 
@@ -56,10 +56,10 @@ export const PostsProvider = ({ children }) => {
 
   const getFeed = async () => {
     try {
-      const response = await axios.get("/api/posts");
+      const response = await axios.get('/api/posts');
       setPosts(response.data);
     } catch (err) {
-      console.error("error", err);
+      console.error('error', err);
       setError(err);
     } finally {
       setLoading(false);
@@ -72,7 +72,7 @@ export const PostsProvider = ({ children }) => {
       setPosts(response.data.posts);
       setPostUser(response.data.user);
     } catch (err) {
-      console.error("error", err);
+      console.error('error', err);
       setError(err);
     } finally {
       setLoading(false);
@@ -81,11 +81,11 @@ export const PostsProvider = ({ children }) => {
 
   const submitPost = async (formData) => {
     try {
-      const response = await axios.post("/api/posts/create", formData);
+      const response = await axios.post('/api/posts/create', formData);
       setPosts((prevPosts) => [response.data, ...prevPosts]);
       incrementPostCount();
     } catch (error) {
-      console.error("error", error);
+      console.error('error', error);
     }
   };
 
@@ -97,7 +97,7 @@ export const PostsProvider = ({ children }) => {
         onDeleteSuccess(postId, onDeleteSuccess);
       })
       .catch((error) => {
-        console.error("error", error);
+        console.error('error', error);
       });
   };
 
@@ -111,10 +111,10 @@ export const PostsProvider = ({ children }) => {
           comments: [...prevPost.comments, response.data],
           comments_count: prevPost.comments_count + 1,
         }));
-        setBody("");
+        setBody('');
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log('error', error);
       });
   };
 

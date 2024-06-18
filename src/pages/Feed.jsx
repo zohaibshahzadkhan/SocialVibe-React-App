@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import FeedForm from "../components/FeedForm";
-import FeedItem from "../components/FeedItem";
-import { usePosts } from "../context/PostsContext";
-import { useUser } from "../context/UserContext";
+import React, { useEffect } from 'react';
+import FeedForm from '../components/FeedForm';
+import FeedItem from '../components/FeedItem';
+import { usePosts } from '../context/PostsContext';
+import { useUser } from '../context/UserContext';
 
 const Feed = () => {
   const { posts, getFeed, setPosts } = usePosts();

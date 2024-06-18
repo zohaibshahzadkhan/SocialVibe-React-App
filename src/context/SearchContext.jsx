@@ -40,7 +40,7 @@ export const SearchProvider = ({ children }) => {
         posts,
         submitForm,
         setUsers,
-        setPosts
+        setPosts,
       }}
     >
       {children}

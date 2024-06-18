@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useFriendship } from "../context/FriendshipContext";
-import { useUser } from "../context/UserContext";
-import { usePosts } from "../context/PostsContext";
-import { useToast } from "../context/ToastContext";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useFriendship } from '../context/FriendshipContext';
+import { useUser } from '../context/UserContext';
+import { usePosts } from '../context/PostsContext';
+import { useToast } from '../context/ToastContext';
 
 const Friends = () => {
   const { user } = useUser();
@@ -26,21 +26,21 @@ const Friends = () => {
 
   const handleAcceptRequest = async (userId) => {
     try {
-      await handleRequest("accepted", userId);
+      await handleRequest('accepted', userId);
       removeRequest(userId);
-      showToast(5000, "Friend request accepted!", "bg-emerald-300");
+      showToast(5000, 'Friend request accepted!', 'bg-emerald-300');
     } catch (error) {
-      console.error("Error accepting request:", error);
+      console.error('Error accepting request:', error);
     }
   };
 
   const handleRejectRequest = async (userId) => {
     try {
-      await handleRequest("rejected", userId);
+      await handleRequest('rejected', userId);
       removeRequest(userId);
-      showToast(5000, "Friend request rejected!", "bg-red-300");
+      showToast(5000, 'Friend request rejected!', 'bg-red-300');
     } catch (error) {
-      console.error("Error rejecting request:", error);
+      console.error('Error rejecting request:', error);
     }
   };
 
@@ -56,7 +56,7 @@ const Friends = () => {
       <div className="col-span-2 ">
         <div className="p-4 bg-white border border-gray-200 text-center rounded-lg shadow-md">
           <img
-            src={user.avatar || "https://via.placeholder.com/50"}
+            src={user.avatar || 'https://via.placeholder.com/50'}
             className="w-24 h-24 rounded-full mx-auto mb-4"
             alt="User Avatar"
           />
@@ -98,7 +98,7 @@ const Friends = () => {
                       </Link>
                     </p>
                     <p className="text-sm text-gray-500">
-                      {friendshipRequest.created_by.friends_count} friends •{" "}
+                      {friendshipRequest.created_by.friends_count} friends •{' '}
                       {friendshipRequest.created_by.posts_count} posts
                     </p>
                   </div>
