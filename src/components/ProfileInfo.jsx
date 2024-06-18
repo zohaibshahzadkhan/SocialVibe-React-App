@@ -11,15 +11,19 @@ const ProfileInfo = () => {
   const { postUser, getUserFeed } = usePosts();
   const { userId } = useParams();
   const { user, removeToken } = useUser();
-  const { sendFriendshipRequest, canSendFriendshipRequest } = useFriendship();
+  const {
+    sendFriendshipRequest,
+    canSendFriendshipRequest,
+    getFriends,
+    friends
+  } = useFriendship();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.isAuthenticated) {
       if (userId) {
         getUserFeed(userId);
-      }
+        getFriends(userId);
     }
   }, [userId]);
 
@@ -35,6 +39,7 @@ const ProfileInfo = () => {
   };
 
   const isOwnProfile = user.id === postUser.id;
+  const isFriend = friends.some((friend) => friend.id === userId);
 
   return (
     <div className="profile-container">
@@ -64,7 +69,7 @@ const ProfileInfo = () => {
         </div>
       </div>
       <div className="profile-actions">
-        {!isOwnProfile ? (
+        {!isOwnProfile && !isFriend ? (
           <button
             className="action-button"
             onClick={handleSendRequest}
@@ -74,7 +79,7 @@ const ProfileInfo = () => {
               ? "Send friendship request"
               : "Request Sent"}
           </button>
-        ) : (
+        ) : isOwnProfile ? (
           <div className="own-profile-actions">
             <Link to="/profile/edit" className="edit-button">
               Edit
@@ -83,7 +88,7 @@ const ProfileInfo = () => {
               Logout
             </button>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
