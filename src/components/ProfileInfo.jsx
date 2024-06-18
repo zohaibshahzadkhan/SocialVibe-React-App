@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { usePosts } from '../context/PostsContext';
-import { useUser } from '../context/UserContext';
-import { useFriendship } from '../context/FriendshipContext';
-import { useToast } from '../context/ToastContext';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import '../styles/ProfileInfo.css';
+import React, { useEffect } from "react";
+import { usePosts } from "../context/PostsContext";
+import { useUser } from "../context/UserContext";
+import { useFriendship } from "../context/FriendshipContext";
+import { useToast } from "../context/ToastContext";
+import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "../styles/ProfileInfo.css";
 
 const ProfileInfo = () => {
   const { postUser, getUserFeed } = usePosts();
@@ -35,24 +35,28 @@ const ProfileInfo = () => {
 
   const handleLogout = () => {
     removeToken();
-    navigate('/');
+    navigate("/");
   };
 
   const isOwnProfile = user.id === postUser.id;
   const isFriend = friends.some((friend) => friend.id === userId);
 
+  if (!postUser || !postUser.id) {
+    return null;
+  }
+
   return (
     <div className="profile-container">
       <div className="profile-header">
         <img
-          src={postUser.get_avatar || 'https://via.placeholder.com/150'}
+          src={postUser.get_avatar || "https://via.placeholder.com/150"}
           alt="Profile"
           className="profile-avatar"
         />
         <div className="profile-details">
-          <p className="profile-name">{postUser.name || 'User Name'}</p>
+          <p className="profile-name">{postUser.name || "User Name"}</p>
           <p className="profile-email">
-            {postUser.email || 'user@example.com'}
+            {postUser.email || "user@example.com"}
           </p>
         </div>
       </div>
@@ -76,8 +80,8 @@ const ProfileInfo = () => {
             disabled={!canSendFriendshipRequest}
           >
             {canSendFriendshipRequest
-              ? 'Send friendship request'
-              : 'Request Sent'}
+              ? "Send friendship request"
+              : "Request Sent"}
           </button>
         ) : isOwnProfile ? (
           <div className="own-profile-actions">
