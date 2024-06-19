@@ -29,7 +29,7 @@ const ProfileInfo = () => {
 
   const handleSendRequest = () => {
     if (canSendFriendshipRequest) {
-      sendFriendshipRequest(userId, { showToast });
+      sendFriendshipRequest(userId, showToast);
     }
   };
 
@@ -73,15 +73,13 @@ const ProfileInfo = () => {
         </div>
       </div>
       <div className="profile-actions">
-        {!isOwnProfile && !isFriend ? (
+        {!isOwnProfile && !isFriend && canSendFriendshipRequest ? (
           <button
             className="action-button"
             onClick={handleSendRequest}
             disabled={!canSendFriendshipRequest}
           >
-            {canSendFriendshipRequest
-              ? "Send friendship request"
-              : "Request Sent"}
+            Send friendship request
           </button>
         ) : isOwnProfile ? (
           <div className="own-profile-actions">

@@ -83,7 +83,7 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem('user.email');
     localStorage.removeItem('user.avatar');
   };
-
+  
   const setUserInfo = (userInfo) => {
     setUser((prevUser) => ({
       ...prevUser,

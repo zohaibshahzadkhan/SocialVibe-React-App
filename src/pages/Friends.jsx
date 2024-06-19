@@ -6,7 +6,7 @@ import { usePosts } from '../context/PostsContext';
 import { useToast } from '../context/ToastContext';
 
 const Friends = () => {
-  const { user } = useUser();
+  const { user} = useUser();
   const { postUser, getUserFeed } = usePosts();
   const { userId } = useParams();
   const { friends, friendshipRequests, handleRequest, getFriends } =
@@ -24,9 +24,14 @@ const Friends = () => {
     setRequests(friendshipRequests);
   }, [friendshipRequests]);
 
+  const incrementFriendCount = () => {
+    postUser.friends_count += 1;
+  };
+
   const handleAcceptRequest = async (userId) => {
     try {
       await handleRequest('accepted', userId);
+      incrementFriendCount()
       removeRequest(userId);
       showToast(5000, 'Friend request accepted!', 'bg-emerald-300');
     } catch (error) {

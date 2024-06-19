@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState } from "react";
+import axios from "axios";
 
 const FriendshipContext = createContext();
 
@@ -12,22 +12,18 @@ export const FriendshipProvider = ({ children }) => {
   const [friends, setFriends] = useState([]);
   const [user, setUser] = useState({});
 
-  const sendFriendshipRequest = async (userId, toastStore) => {
+  const sendFriendshipRequest = async (userId, showToast) => {
     try {
       const response = await axios.post(`/api/friends/${userId}/request/`);
       setCanSendFriendshipRequest(false);
 
-      if (response.data.message === 'request already sent') {
-        toastStore.showToast(
-          5000,
-          'The request has already been sent!',
-          'bg-red-300'
-        );
+      if (response.data.message === "request already sent") {
+        showToast(5000, "The request has already been sent!", "bg-red-300");
       } else {
-        toastStore.showToast(5000, 'The request was sent!', 'bg-emerald-300');
+        showToast(5000, "The request was sent!", "bg-emerald-300");
       }
     } catch (error) {
-      console.log('error', error);
+      console.log("Error sending friendship request:", error);
     }
   };
 
@@ -35,10 +31,11 @@ export const FriendshipProvider = ({ children }) => {
     try {
       const response = await axios.get(`/api/friends/${userId}/`);
       setFriendshipRequests(response.data.requests);
+      setCanSendFriendshipRequest(response.data.can_send_request);
       setFriends(response.data.friends);
       setUser(response.data.user);
     } catch (error) {
-      console.error('Error fetching friends:', error);
+      console.error("Error fetching friends:", error);
     }
   };
 
@@ -46,7 +43,7 @@ export const FriendshipProvider = ({ children }) => {
     try {
       await axios.post(`/api/friends/${userId}/${status}/`);
     } catch (error) {
-      console.error('Error handling request:', error);
+      console.error("Error handling request:", error);
     }
   };
 
