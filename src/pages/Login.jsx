@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useToast } from '../context/ToastContext';
 import { useUser } from '../context/UserContext';
-import axios from 'axios';
 import '../styles/Login.css';
 
 const Login = () => {
-  const { setToken, setUserInfo } = useUser();
-  const { showToast } = useToast();
+  const { login, errors } = useUser();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
-
-  const [errors, setErrors] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,42 +19,11 @@ const Login = () => {
     }));
   };
 
-  const validateForm = () => {
-    const newErrors = [];
-    if (!form.email) newErrors.push('Email is required');
-    if (!form.password) newErrors.push('Password is required');
-    return newErrors;
-  };
-
   const submitForm = async (e) => {
     e.preventDefault();
-    const validationErrors = validateForm();
-    setErrors(validationErrors);
-
-    if (validationErrors.length === 0) {
-      try {
-        const response = await axios.post('/api/login/', form);
-        setToken(response.data);
-
-        const userResponse = await axios.get('/api/me/', {
-          headers: {
-            Authorization: `Bearer ${response.data.access}`,
-          },
-        });
-        setUserInfo(userResponse.data);
-
-        navigate('/feed');
-      } catch (error) {
-        console.log('error', error);
-        setErrors([
-          'The email or password is incorrect! Or the user is not activated!',
-        ]);
-        showToast(
-          5000,
-          'The email or password is incorrect! Or the user is not activated!',
-          'bg-red-500'
-        );
-      }
+    const result = await login(form);
+    if (result.success) {
+      navigate('/feed');
     }
   };
 

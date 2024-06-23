@@ -158,60 +158,34 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const submitForm = (form, fileRef) => {
-    setErrors([]);
+  const login = async (form) => {
     const newErrors = [];
-
-    if (form.email === "") {
-      newErrors.push("Your e-mail is missing");
-    }
-
-    if (form.name === "") {
-      newErrors.push("Your name is missing");
-    }
+    if (!form.email) newErrors.push("Email is required");
+    if (!form.password) newErrors.push("Password is required");
 
     setErrors(newErrors);
+    if (newErrors.length === 0) {
+      try {
+        const response = await axios.post("/api/login/", form);
+        setToken(response.data);
 
-    if (newErrors.length > 0) {
-      showToast(5000, "Please fix the errors and try again.", "bg-red-500");
-      return;
+        const userResponse = await axios.get("/api/me/", {
+          headers: {
+            Authorization: `Bearer ${response.data.access}`,
+          },
+        });
+        setUserInfo(userResponse.data);
+        return { success: true };
+      } catch (error) {
+        console.error("error", error);
+        setErrors([
+          "The email or password is incorrect! Or the user is not activated!",
+        ]);
+        return { success: false };
+      }
+    } else {
+      return { success: false };
     }
-
-    let formData = new FormData();
-    formData.append("avatar", fileRef.current.files[0]);
-    formData.append("name", form.name);
-    formData.append("email", form.email);
-
-    axios
-      .post("/api/editprofile/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        if (response.data.message === "information updated") {
-          showToast(5000, "The information was saved", "bg-emerald-500");
-
-          setUserInfo({
-            id: user.id,
-            name: form.name,
-            email: form.email,
-            avatar: response.data.user.get_avatar,
-          });
-
-          window.history.back();
-        } else {
-          showToast(
-            5000,
-            `${response.data.message}. Please try again`,
-            "bg-red-500"
-          );
-        }
-      })
-      .catch((error) => {
-        console.log("error", error);
-        showToast(5000, "An error occurred. Please try again.", "bg-red-500");
-      });
   };
 
   return (
@@ -223,7 +197,7 @@ export const UserProvider = ({ children }) => {
         setUserInfo,
         initStore,
         errors,
-        submitForm,
+        login,
         signup,
       }}
     >
