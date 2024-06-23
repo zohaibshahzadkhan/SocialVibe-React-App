@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useToast } from '../context/ToastContext';
-import axios from 'axios';
-import '../styles/SignUp.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useToast } from "../context/ToastContext";
+import { useUser } from "../context/UserContext";
+import "../styles/SignUp.css";
 
 const SignUp = () => {
   const { showToast } = useToast();
+  const { signup, errors } = useUser();
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password1: '',
-    password2: '',
+    name: "",
+    email: "",
+    password1: "",
+    password2: "",
   });
-
-  const [errors, setErrors] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,56 +22,15 @@ const SignUp = () => {
     }));
   };
 
-  const validateForm = () => {
-    const newErrors = [];
-
-    if (!form.name) newErrors.push('Name is required');
-    if (!form.email) newErrors.push('Email is required');
-    if (!form.password1) newErrors.push('Password is required');
-    if (form.password1 !== form.password2)
-      newErrors.push('Passwords must match');
-
-    return newErrors;
-  };
-
   const submitForm = (e) => {
     e.preventDefault();
-    const validationErrors = validateForm();
-    setErrors(validationErrors);
-    if (validationErrors.length === 0) {
-      axios
-        .post('/api/signup/', form)
-        .then((response) => {
-          if (response.data.message === 'success') {
-            showToast(
-              5000,
-              'The user is registered. Please log in',
-              'bg-emerald-500'
-            );
-
-            setForm({
-              email: '',
-              name: '',
-              password1: '',
-              password2: '',
-            });
-          } else {
-            const data = JSON.parse(response.data.message);
-            for (const key in data) {
-              setErrors((prevErrors) => [...prevErrors, data[key][0].message]);
-            }
-
-            showToast(
-              5000,
-              'Something went wrong. Please try again',
-              'bg-red-300'
-            );
-          }
-        })
-        .catch((error) => {
-          console.log('error', error);
-        });
-    }
+    signup(form);
+    setForm({
+      email: "",
+      name: "",
+      password1: "",
+      password2: "",
+    });
   };
 
   return (
@@ -87,10 +45,10 @@ const SignUp = () => {
           </p>
 
           <p className="font-bold">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link to="/login" className="underline">
               Click here
-            </Link>{' '}
+            </Link>{" "}
             to log in!
           </p>
         </div>
@@ -152,7 +110,7 @@ const SignUp = () => {
             </div>
 
             {errors.length > 0 && (
-              <div className="bg-red-300 text-white rounded-lg p-6">
+              <div className="bg-red-500 text-white rounded-lg p-6">
                 {errors.map((error, index) => (
                   <p key={index}>{error}</p>
                 ))}

@@ -1,26 +1,27 @@
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
+import { useToast } from "./ToastContext";
 
 const FriendshipContext = createContext();
 
 export const useFriendship = () => useContext(FriendshipContext);
 
 export const FriendshipProvider = ({ children }) => {
+  const { showToast } = useToast();
   const [canSendFriendshipRequest, setCanSendFriendshipRequest] =
     useState(true);
   const [friendshipRequests, setFriendshipRequests] = useState([]);
   const [friends, setFriends] = useState([]);
-  const [user, setUser] = useState({});
 
-  const sendFriendshipRequest = async (userId, showToast) => {
+  const sendFriendshipRequest = async (userId) => {
     try {
       const response = await axios.post(`/api/friends/${userId}/request/`);
       setCanSendFriendshipRequest(false);
 
       if (response.data.message === "request already sent") {
-        showToast(5000, "The request has already been sent!", "bg-red-300");
+        showToast(5000, "The request has already been sent!", "bg-red-500");
       } else {
-        showToast(5000, "The request was sent!", "bg-emerald-300");
+        showToast(5000, "The request was sent!", "bg-emerald-500");
       }
     } catch (error) {
       console.log("Error sending friendship request:", error);
@@ -33,7 +34,6 @@ export const FriendshipProvider = ({ children }) => {
       setFriendshipRequests(response.data.requests);
       setCanSendFriendshipRequest(response.data.can_send_request);
       setFriends(response.data.friends);
-      setUser(response.data.user);
     } catch (error) {
       console.error("Error fetching friends:", error);
     }

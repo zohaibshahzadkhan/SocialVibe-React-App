@@ -57,7 +57,7 @@ const Login = () => {
         showToast(
           5000,
           'The email or password is incorrect! Or the user is not activated!',
-          'bg-red-300'
+          'bg-red-500'
         );
       }
     }
@@ -113,7 +113,7 @@ const Login = () => {
             </div>
 
             {errors.length > 0 && (
-              <div className="bg-red-300 text-white rounded-lg p-6">
+              <div className="bg-red-500 text-white rounded-lg p-6">
                 {errors.map((error, index) => (
                   <p key={index}>{error}</p>
                 ))}

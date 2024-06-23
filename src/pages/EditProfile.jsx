@@ -59,7 +59,7 @@ const EditProfile = () => {
           </div>
 
           {errors.length > 0 && (
-            <div className="bg-red-300 text-white rounded-lg p-6">
+            <div className="bg-red-500 text-white rounded-lg p-6">
               {errors.map((error, index) => (
                 <p key={index}>{error}</p>
               ))}

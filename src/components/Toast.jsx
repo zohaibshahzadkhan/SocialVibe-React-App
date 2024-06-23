@@ -7,7 +7,7 @@ const Toast = () => {
   return (
     toast.isVisible && (
       <div
-        className={`transition ease-in-out delay-500 duration-500 px-6 py-6 fixed top-full right-8 rounded-xl shadow-xl ${toast.classes}`}
+        className={`transition ease-in-out delay-500 duration-500 px-6 py-4 mb-6 rounded-xl shadow-xl z-50 ${toast.classes}`}
       >
         {toast.message}
       </div>

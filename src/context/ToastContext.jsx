@@ -23,14 +23,12 @@ export const ToastProvider = ({ children }) => {
     setTimeout(() => {
       setToast((prev) => ({
         ...prev,
-        classes: prev.classes + ' -translate-y-28',
       }));
     }, 10);
 
     setTimeout(() => {
       setToast((prev) => ({
         ...prev,
-        classes: prev.classes.replace('-translate-y-28', ''),
       }));
     }, ms - 500);
 

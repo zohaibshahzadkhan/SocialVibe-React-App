@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { usePosts } from "../context/PostsContext";
 import { useUser } from "../context/UserContext";
 import { useFriendship } from "../context/FriendshipContext";
-import { useToast } from "../context/ToastContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../styles/ProfileInfo.css";
@@ -17,7 +16,6 @@ const ProfileInfo = () => {
     getFriends,
     friends,
   } = useFriendship();
-  const { showToast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +27,7 @@ const ProfileInfo = () => {
 
   const handleSendRequest = () => {
     if (canSendFriendshipRequest) {
-      sendFriendshipRequest(userId, showToast);
+      sendFriendshipRequest(userId);
     }
   };
 

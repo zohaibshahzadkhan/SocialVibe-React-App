@@ -33,7 +33,7 @@ const Friends = () => {
       await handleRequest('accepted', userId);
       incrementFriendCount()
       removeRequest(userId);
-      showToast(5000, 'Friend request accepted!', 'bg-emerald-300');
+      showToast(5000, 'Friend request accepted!', 'bg-emerald-500');
     } catch (error) {
       console.error('Error accepting request:', error);
     }
@@ -43,7 +43,7 @@ const Friends = () => {
     try {
       await handleRequest('rejected', userId);
       removeRequest(userId);
-      showToast(5000, 'Friend request rejected!', 'bg-red-300');
+      showToast(5000, 'Friend request rejected!', 'bg-red-500');
     } catch (error) {
       console.error('Error rejecting request:', error);
     }

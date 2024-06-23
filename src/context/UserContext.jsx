@@ -4,12 +4,14 @@ import React, {
   useState,
   useEffect,
   useRef,
-} from 'react';
-import axios from 'axios';
+} from "react";
+import axios from "axios";
+import { useToast } from "./ToastContext";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const { showToast } = useToast();
   const [user, setUser] = useState({
     isAuthenticated: false,
     id: null,
@@ -20,7 +22,6 @@ export const UserProvider = ({ children }) => {
     avatar: null,
   });
   const [errors, setErrors] = useState([]);
-  const [toast, setToast] = useState(null);
 
   const initStoreCalled = useRef(false);
 
@@ -32,12 +33,12 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const initStore = () => {
-    const access = localStorage.getItem('user.access');
-    const refresh = localStorage.getItem('user.refresh');
-    const id = localStorage.getItem('user.id');
-    const name = localStorage.getItem('user.name');
-    const email = localStorage.getItem('user.email');
-    const avatar = localStorage.getItem('user.avatar');
+    const access = localStorage.getItem("user.access");
+    const refresh = localStorage.getItem("user.refresh");
+    const id = localStorage.getItem("user.id");
+    const name = localStorage.getItem("user.name");
+    const email = localStorage.getItem("user.email");
+    const avatar = localStorage.getItem("user.avatar");
 
     if (access && refresh) {
       setUser({
@@ -61,8 +62,8 @@ export const UserProvider = ({ children }) => {
       isAuthenticated: true,
     }));
 
-    localStorage.setItem('user.access', data.access);
-    localStorage.setItem('user.refresh', data.refresh);
+    localStorage.setItem("user.access", data.access);
+    localStorage.setItem("user.refresh", data.refresh);
   };
 
   const removeToken = () => {
@@ -76,14 +77,14 @@ export const UserProvider = ({ children }) => {
       avatar: null,
     });
 
-    localStorage.removeItem('user.access');
-    localStorage.removeItem('user.refresh');
-    localStorage.removeItem('user.id');
-    localStorage.removeItem('user.name');
-    localStorage.removeItem('user.email');
-    localStorage.removeItem('user.avatar');
+    localStorage.removeItem("user.access");
+    localStorage.removeItem("user.refresh");
+    localStorage.removeItem("user.id");
+    localStorage.removeItem("user.name");
+    localStorage.removeItem("user.email");
+    localStorage.removeItem("user.avatar");
   };
-  
+
   const setUserInfo = (userInfo) => {
     setUser((prevUser) => ({
       ...prevUser,
@@ -93,15 +94,15 @@ export const UserProvider = ({ children }) => {
       avatar: userInfo.avatar,
     }));
 
-    localStorage.setItem('user.id', userInfo.id);
-    localStorage.setItem('user.name', userInfo.name);
-    localStorage.setItem('user.email', userInfo.email);
-    localStorage.setItem('user.avatar', userInfo.avatar);
+    localStorage.setItem("user.id", userInfo.id);
+    localStorage.setItem("user.name", userInfo.name);
+    localStorage.setItem("user.email", userInfo.email);
+    localStorage.setItem("user.avatar", userInfo.avatar);
   };
 
   const refreshToken = (refresh) => {
     axios
-      .post('/api/refresh/', { refresh })
+      .post("/api/refresh/", { refresh })
       .then((response) => {
         const newAccessToken = response.data.access;
         setUser((prevUser) => ({
@@ -109,55 +110,87 @@ export const UserProvider = ({ children }) => {
           access: newAccessToken,
         }));
 
-        localStorage.setItem('user.access', newAccessToken);
-        axios.defaults.headers.common['Authorization'] =
-          'Bearer ' + newAccessToken;
+        localStorage.setItem("user.access", newAccessToken);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + newAccessToken;
       })
       .catch((error) => {
         removeToken();
       });
   };
 
-  const showToast = (duration, message, style) => {
-    setToast({ duration, message, style });
-    setTimeout(() => {
-      setToast(null);
-    }, duration);
+  const signup = (form) => {
+    const newErrors = [];
+
+    if (!form.name) newErrors.push("Name is required");
+    if (!form.email) newErrors.push("Email is required");
+    if (!form.password1) newErrors.push("Password is required");
+    if (form.password1 !== form.password2)
+      newErrors.push("Passwords must match");
+
+    setErrors(newErrors);
+
+    if (newErrors.length === 0) {
+      axios
+        .post("/api/signup/", form)
+        .then((response) => {
+          if (response.data.message === "success") {
+            showToast(
+              5000,
+              "The user is registered. Please log in",
+              "bg-emerald-500"
+            );
+          } else {
+            const data = JSON.parse(response.data.message);
+            for (const key in data) {
+              setErrors((prevErrors) => [...prevErrors, data[key][0].message]);
+            }
+            showToast(
+              5000,
+              "Something went wrong. Please try again",
+              "bg-red-500"
+            );
+          }
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    }
   };
 
   const submitForm = (form, fileRef) => {
     setErrors([]);
     const newErrors = [];
 
-    if (form.email === '') {
-      newErrors.push('Your e-mail is missing');
+    if (form.email === "") {
+      newErrors.push("Your e-mail is missing");
     }
 
-    if (form.name === '') {
-      newErrors.push('Your name is missing');
+    if (form.name === "") {
+      newErrors.push("Your name is missing");
     }
 
     setErrors(newErrors);
 
     if (newErrors.length > 0) {
-      showToast(5000, 'Please fix the errors and try again.', 'bg-red-300');
+      showToast(5000, "Please fix the errors and try again.", "bg-red-500");
       return;
     }
 
     let formData = new FormData();
-    formData.append('avatar', fileRef.current.files[0]);
-    formData.append('name', form.name);
-    formData.append('email', form.email);
+    formData.append("avatar", fileRef.current.files[0]);
+    formData.append("name", form.name);
+    formData.append("email", form.email);
 
     axios
-      .post('/api/editprofile/', formData, {
+      .post("/api/editprofile/", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
-        if (response.data.message === 'information updated') {
-          showToast(5000, 'The information was saved', 'bg-emerald-500');
+        if (response.data.message === "information updated") {
+          showToast(5000, "The information was saved", "bg-emerald-500");
 
           setUserInfo({
             id: user.id,
@@ -171,13 +204,13 @@ export const UserProvider = ({ children }) => {
           showToast(
             5000,
             `${response.data.message}. Please try again`,
-            'bg-red-300'
+            "bg-red-500"
           );
         }
       })
       .catch((error) => {
-        console.log('error', error);
-        showToast(5000, 'An error occurred. Please try again.', 'bg-red-300');
+        console.log("error", error);
+        showToast(5000, "An error occurred. Please try again.", "bg-red-500");
       });
   };
 
@@ -190,17 +223,11 @@ export const UserProvider = ({ children }) => {
         setUserInfo,
         initStore,
         errors,
-        toast,
-        showToast,
         submitForm,
+        signup,
       }}
     >
       {children}
-      {toast && (
-        <div className={`fixed bottom-4 right-4 p-4 rounded ${toast.style}`}>
-          {toast.message}
-        </div>
-      )}
     </UserContext.Provider>
   );
 };
