@@ -1,5 +1,6 @@
 import { rest } from "msw";
 const baseURL = "https://socialvibe-api-32609e33d535.herokuapp.com";
+const postId = "9cf520ba-47c9-48db-9aa8-860adbbb5a8f";
 
 export const handlers = [
   rest.get(`${baseURL}/api/me/`, (req, res, ctx) => {
@@ -16,5 +17,51 @@ export const handlers = [
 
   rest.post(`${baseURL}/logout/`, (req, res, ctx) => {
     return res(ctx.status(200));
+  }),
+
+  rest.get(`${baseURL}/api/posts/${postId}/`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        post: {
+          id: "9cf520ba-47c9-48db-9aa8-860adbbb5a8f",
+          body: "My First Post",
+          likes_count: 0,
+          comments_count: 1,
+          created_by: {
+            id: "4a234166-27b0-46ca-9301-67154fae2d7a",
+            name: "Ali",
+            email: "ali16@gmail.com",
+            friends_count: 1,
+            posts_count: 1,
+            get_avatar:
+              "https://res.cloudinary.com/dceudxuqq/image/upload/v1718720898/media/profile_gs8tic.png",
+          },
+          created_at_formatted: "0\u00a0minutes",
+          comments: [
+            {
+              id: "17da08ab-f68a-4029-929e-c71a667b8bc6",
+              body: "Heelow",
+              created_by: {
+                id: "4a234166-27b0-46ca-9301-67154fae2d7a",
+                name: "Ali",
+                email: "ali16@gmail.com",
+                friends_count: 1,
+                posts_count: 1,
+                get_avatar:
+                  "https://res.cloudinary.com/dceudxuqq/image/upload/v1718720898/media/profile_gs8tic.png",
+              },
+              created_at_formatted: "0\u00a0minutes",
+            },
+          ],
+          attachments: [
+            {
+              id: "151e5ab4-1e2c-4909-80f7-50f87dd31827",
+              get_image:
+                "https://res.cloudinary.com/dceudxuqq/image/upload/v1/media/post_attachments/sea_turtle_underwater_art-wallpaper-1920x1080_ucq8tq",
+            },
+          ],
+        },
+      })
+    );
   }),
 ];
