@@ -15,7 +15,7 @@ const NavBar = () => {
           </div>
           {user.isAuthenticated && (
             <div className="menu-center flex space-x-12">
-              <Link to="/feed">
+              <Link to="/feed" aria-label="feed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -32,7 +32,7 @@ const NavBar = () => {
                 </svg>
               </Link>
 
-              <Link to="/search">
+              <Link to="/search" aria-label="search">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -53,7 +53,7 @@ const NavBar = () => {
 
           <div className="menu-right">
             {user.isAuthenticated && user.id ? (
-              <Link to={`/profile/${user.id}`}>
+              <Link to={`/profile/${user.id}`} aria-label="User Avatar">
                 <img
                   src={user.avatar}
                   className="w-12 h-12 rounded-full"
