@@ -158,6 +158,58 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const submitForm = (form, fileRef) => {
+    setErrors([]);
+    const newErrors = [];
+
+    if (form.email === "") {
+      newErrors.push("Your e-mail is missing");
+    }
+
+    if (form.name === "") {
+      newErrors.push("Your name is missing");
+    }
+
+    setErrors(newErrors);
+
+    if (newErrors.length > 0) {
+      showToast(5000, "Please fix the errors and try again.", "bg-red-500");
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append("avatar", fileRef.current.files[0]);
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+
+    axios
+      .post("/api/editprofile/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        if (response.data.message === "information updated") {
+          showToast(5000, "Profile has been updated", "bg-emerald-500");
+
+          setUserInfo({
+            id: user.id,
+            name: form.name,
+            email: form.email,
+            avatar: response.data.user.get_avatar,
+          });
+
+          window.history.back();
+        } else {
+          showToast(5000, `${response.data.message}. Please try again`, "bg-red-500");
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+        showToast(5000, "An error occurred. Please try again.", "bg-red-500");
+      });
+  };
+
   const login = async (form) => {
     const newErrors = [];
     if (!form.email) newErrors.push("Email is required");
@@ -199,6 +251,8 @@ export const UserProvider = ({ children }) => {
         errors,
         login,
         signup,
+        submitForm,
+        setErrors
       }}
     >
       {children}

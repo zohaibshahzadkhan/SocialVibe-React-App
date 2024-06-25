@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { useUser } from '../context/UserContext';
 
 const EditProfile = () => {
-  const { user, errors, submitForm } = useUser();
+  const { user, errors, submitForm, setErrors } = useUser();
   const [form, setForm] = useState({
     email: user.email || '',
     name: user.name || '',
@@ -16,6 +16,10 @@ const EditProfile = () => {
       [name]: value,
     }));
   };
+
+  useEffect(()=> {
+    setErrors([])
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();

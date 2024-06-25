@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useFriendship } from '../context/FriendshipContext';
-import { useUser } from '../context/UserContext';
 import { usePosts } from '../context/PostsContext';
 import { useToast } from '../context/ToastContext';
 
 const Friends = () => {
-  const { user} = useUser();
   const { postUser, getUserFeed } = usePosts();
   const { userId } = useParams();
   const { friends, friendshipRequests, handleRequest, getFriends } =
@@ -61,11 +59,11 @@ const Friends = () => {
       <div className="col-span-2 ">
         <div className="p-4 bg-white border border-gray-200 text-center rounded-lg shadow-md">
           <img
-            src={user.avatar || 'https://via.placeholder.com/50'}
+            src={postUser.get_avatar || 'https://via.placeholder.com/50'}
             className="w-24 h-24 rounded-full mx-auto mb-4"
             alt="User Avatar"
           />
-          <p className="text-xl font-semibold text-gray-800">{user.name}</p>
+          <p className="text-xl font-semibold text-gray-800">{postUser.name}</p>
           <div className="mt-2 flex justify-center">
             <div className="text-gray-500 mr-4">
               <p className="text-sm font-medium">{postUser.friends_count}</p>
