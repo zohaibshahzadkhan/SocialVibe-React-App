@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FeedItem from '../components/FeedItem';
 import { useSearch } from '../context/SearchContext';
-import '../styles/Search.css'; // Import the custom CSS file
+import useLoading from '../hooks/useLoading'; // Import the custom hook
+import '../styles/Search.css';
 
 const Search = () => {
   const { query, setQuery, users, posts, submitForm, setUsers, setPosts } =
     useSearch();
+  const [searched, setSearched] = useState(false); // State to track if search button has been clicked
+  const { loading, handleLoading } = useLoading(submitForm); // Use the custom hook
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
@@ -14,6 +17,13 @@ const Search = () => {
       setUsers([]);
       setPosts([]);
     }
+    setSearched(false); // Reset searched state when input changes
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setSearched(true); // Set searched state to true when search button is clicked
+    handleLoading(); // Trigger loading action with custom hook
   };
 
   const deletePost = (id) => {
@@ -24,13 +34,7 @@ const Search = () => {
     <div className="max-w-7xl mx-auto grid grid-cols-4 gap-4">
       <div className="main-left col-span-4 space-y-4">
         <div className="bg-white border border-gray-200 rounded-lg">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              submitForm();
-            }}
-            className="p-4 flex space-x-4"
-          >
+          <form onSubmit={handleSearchSubmit} className="p-4 flex space-x-4">
             <input
               type="search"
               value={query}
@@ -60,9 +64,9 @@ const Search = () => {
           </form>
         </div>
 
-        {query && (
+        {searched && !loading && ( // Display results only when search is completed and not loading
           <>
-            {users.length > 0 && (
+            {users.length > 0 ? (
               <div className="p-4 bg-white border border-gray-200 rounded-lg users-grid">
                 {users.map((user) => (
                   <div
@@ -90,9 +94,13 @@ const Search = () => {
                   </div>
                 ))}
               </div>
+            ) : (
+              <p className="text-center text-gray-500 mt-4">
+                No users found
+              </p>
             )}
 
-            {posts.length > 0 &&
+            {posts.length > 0 ? (
               posts.map((post) => (
                 <div
                   key={post.id}
@@ -100,8 +108,17 @@ const Search = () => {
                 >
                   <FeedItem post={post} onDeletePost={deletePost} />
                 </div>
-              ))}
+              ))
+            ) : (
+              <p className="text-center text-gray-500 mt-4">
+                No posts found
+              </p>
+            )}
           </>
+        )}
+
+        {loading && searched && ( // Display loading message only after search is clicked
+          <p className="text-center text-gray-500 mt-4">Loading...</p>
         )}
       </div>
     </div>
