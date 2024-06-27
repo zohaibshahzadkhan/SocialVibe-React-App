@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import FeedItem from '../components/FeedItem';
-import { useSearch } from '../context/SearchContext';
-import useLoading from '../hooks/useLoading'; // Import the custom hook
-import '../styles/Search.css';
+import React, { useState } from "react";
+import FeedItem from "../components/FeedItem";
+import { useSearch } from "../context/SearchContext";
+import useLoading from "../hooks/useLoading";
+import "../styles/Search.css";
 
 const Search = () => {
   const { query, setQuery, users, posts, submitForm, setUsers, setPosts } =
     useSearch();
-  const [searched, setSearched] = useState(false); // State to track if search button has been clicked
-  const { loading, handleLoading } = useLoading(submitForm); // Use the custom hook
+  const [searched, setSearched] = useState(false);
+  const { loading, handleLoading } = useLoading(submitForm);
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setQuery(inputValue);
-    if (inputValue === '') {
+    if (inputValue === "") {
       setUsers([]);
       setPosts([]);
     }
-    setSearched(false); // Reset searched state when input changes
+    setSearched(false);
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setSearched(true); // Set searched state to true when search button is clicked
-    handleLoading(); // Trigger loading action with custom hook
+    setSearched(true);
+    handleLoading();
   };
 
   const deletePost = (id) => {
@@ -64,7 +64,7 @@ const Search = () => {
           </form>
         </div>
 
-        {searched && !loading && ( // Display results only when search is completed and not loading
+        {searched && !loading && (
           <>
             {users.length > 0 ? (
               <div className="p-4 bg-white border border-gray-200 rounded-lg users-grid">
@@ -95,9 +95,9 @@ const Search = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-center text-gray-500 mt-4">
+              <div className="text-center text-xl font-semibold text-gray-700">
                 No users found
-              </p>
+              </div>
             )}
 
             {posts.length > 0 ? (
@@ -110,15 +110,17 @@ const Search = () => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500 mt-4">
+              <div className="text-center text-xl font-semibold text-gray-700">
                 No posts found
-              </p>
+              </div>
             )}
           </>
         )}
 
-        {loading && searched && ( // Display loading message only after search is clicked
-          <p className="text-center text-gray-500 mt-4">Loading...</p>
+        {loading && searched && (
+          <div className="text-center text-xl font-semibold text-gray-700">
+            Loading...
+          </div>
         )}
       </div>
     </div>

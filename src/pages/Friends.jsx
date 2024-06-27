@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useFriendship } from '../context/FriendshipContext';
-import { usePosts } from '../context/PostsContext';
-import { useToast } from '../context/ToastContext';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useFriendship } from "../context/FriendshipContext";
+import { usePosts } from "../context/PostsContext";
+import { useToast } from "../context/ToastContext";
+import useLoading from "../hooks/useLoading";
 
 const Friends = () => {
   const { postUser, getUserFeed } = usePosts();
@@ -13,10 +14,18 @@ const Friends = () => {
 
   const [requests, setRequests] = useState([]);
 
+  const { loading: loadingFriends, handleLoading: handleGetFriends } =
+    useLoading(getFriends);
+  const { loading: loadingFeed, handleLoading: handleGetUserFeed } =
+    useLoading(getUserFeed);
+
   useEffect(() => {
-    getFriends(userId);
-    getUserFeed(userId);
-  }, []);
+    const loadData = async () => {
+      await handleGetFriends(userId);
+      await handleGetUserFeed(userId);
+    };
+    loadData();
+  }, [userId]);
 
   useEffect(() => {
     setRequests(friendshipRequests);
@@ -28,22 +37,22 @@ const Friends = () => {
 
   const handleAcceptRequest = async (userId) => {
     try {
-      await handleRequest('accepted', userId);
-      incrementFriendCount()
+      await handleRequest("accepted", userId);
+      incrementFriendCount();
       removeRequest(userId);
-      showToast(5000, 'Friend request accepted!', 'bg-emerald-500');
+      showToast(5000, "Friend request accepted!", "bg-emerald-500");
     } catch (error) {
-      console.error('Error accepting request:', error);
+      console.error("Error accepting request:", error);
     }
   };
 
   const handleRejectRequest = async (userId) => {
     try {
-      await handleRequest('rejected', userId);
+      await handleRequest("rejected", userId);
       removeRequest(userId);
-      showToast(5000, 'Friend request rejected!', 'bg-red-500');
+      showToast(5000, "Friend request rejected!", "bg-red-500");
     } catch (error) {
-      console.error('Error rejecting request:', error);
+      console.error("Error rejecting request:", error);
     }
   };
 
@@ -54,12 +63,20 @@ const Friends = () => {
     setRequests(updatedRequests);
   };
 
+  if (loadingFriends || loadingFeed) {
+    return (
+      <div className="text-center text-xl font-semibold text-gray-700">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
       <div className="col-span-2 ">
         <div className="p-4 bg-white border border-gray-200 text-center rounded-lg shadow-md">
           <img
-            src={postUser.get_avatar || 'https://via.placeholder.com/50'}
+            src={postUser.get_avatar || "https://via.placeholder.com/50"}
             className="w-24 h-24 rounded-full mx-auto mb-4"
             alt="User Avatar"
           />
@@ -101,7 +118,7 @@ const Friends = () => {
                       </Link>
                     </p>
                     <p className="text-sm text-gray-500">
-                      {friendshipRequest.created_by.friends_count} friends •{' '}
+                      {friendshipRequest.created_by.friends_count} friends •{" "}
                       {friendshipRequest.created_by.posts_count} posts
                     </p>
                   </div>
