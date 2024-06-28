@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useToast } from "../context/ToastContext";
 import { useUser } from "../context/UserContext";
 import "../styles/SignUp.css";
 
 const SignUp = () => {
-  const { showToast } = useToast();
-  const { signup, errors } = useUser();
+  const { signup, errors, setErrors } = useUser();
   const [form, setForm] = useState({
     name: "",
     email: "",
     password1: "",
     password2: "",
   });
+
+  useEffect(() => {
+    setErrors([]);
+  },[]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

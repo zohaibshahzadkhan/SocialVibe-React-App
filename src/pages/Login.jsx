@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
-import '../styles/Login.css';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import "../styles/Login.css";
 
 const Login = () => {
-  const { login, errors } = useUser();
+  const { login, errors, setErrors } = useUser();
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -19,11 +19,15 @@ const Login = () => {
     }));
   };
 
+  useEffect(() => {
+    setErrors([])
+  },[]);
+
   const submitForm = async (e) => {
     e.preventDefault();
     const result = await login(form);
     if (result.success) {
-      navigate('/feed');
+      navigate("/feed");
     }
   };
 
@@ -38,10 +42,10 @@ const Login = () => {
           </p>
 
           <p className="font-bold">
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <Link to="/signup" className="underline">
               Click here
-            </Link>{' '}
+            </Link>{" "}
             to create one!
           </p>
         </div>
