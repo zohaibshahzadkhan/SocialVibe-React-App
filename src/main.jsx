@@ -11,7 +11,6 @@ import SignUp from './pages/SignUp.jsx';
 import './index.css';
 import Login from './pages/Login.jsx';
 import Feed from './pages/Feed.jsx';
-import Chat from './pages/Chat.jsx';
 import Profile from './pages/Profile.jsx';
 import Search from './pages/Search.jsx';
 import Friends from './pages/Friends.jsx';
@@ -28,7 +27,6 @@ const router = createBrowserRouter(
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
       <Route path="feed" element={<Feed />} />
-      <Route path="chat" element={<Chat />} />
       <Route path="search" element={<Search />} />
       <Route path="/profile/edit" element={<EditProfile />} />
       <Route path="/profile/:userId/friends" element={<Friends />} />
