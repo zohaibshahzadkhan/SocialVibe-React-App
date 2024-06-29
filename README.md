@@ -470,3 +470,66 @@ Milestones are set to mark significant stages or deadlines within the project ti
 ## Testing 
 
 A separate testing document has been created as [Testing.md](Testing.md)
+
+## Deployment
+
+### Deploying the SocialVibe App on Heroku
+
+Before deploying to Heroku, ensure the following steps are completed:
+
+- **Procfile**: Create a `Procfile` for deployment. This file is crucial for Heroku to understand how to run your application.
+
+
+### Steps to Deploy:
+
+1. **Login to Heroku:**
+   - Create an account or log in to Heroku at [Heroku](https://www.heroku.com).
+
+
+2. **Create a New App:**
+   - Click on **New** > **Create new app** in the Heroku dashboard.
+   - Choose an app name and select the region.
+   - Click on **Create app**.
+
+3. **Configure Environment Variables:**
+   - In the app dashboard, navigate to the **Settings** tab.
+   - Click on **Reveal Config Vars**.
+   - Ensure all necessary environment variables are sets if needed.
+
+4. **Add Buildpacks:**
+   - Go to the **Settings** tab.
+   - Scroll down to **Buildpacks** and add the following buildpacks:
+     - Node.js (if applicable)
+
+5. **Deploy from GitHub:**
+   - Navigate to the **Deploy** tab.
+   - Choose **GitHub** as the deployment method.
+   - Connect to your GitHub account if prompted.
+   - Search for and select the repository you want to deploy.
+   - Click **Connect** to connect the repository.
+
+
+6. **Automatic and Manual Deployment:**
+   - Choose whether you want to enable automatic deployments (from a selected branch) or manual deployments.
+   - Click on **Deploy Branch** to deploy manually.
+
+### Cloning & Forking
+#### Fork
+1. On GitHub.com, navigate to the [zohaibshahzadkhan/SocialVibe-React-App](https://github.com/zohaibshahzadkhan/SocialVibe-React-App) repository.
+2. In the top-right corner of the page, click Fork.
+3. By default, forks are named the same as their parent repositories. You can change the name of the fork to distinguish it further.
+4. Add a description to your fork.
+5. Click Create fork.
+
+#### Clone
+1. Above the list of files click the button that says 'Code'.
+2. Copy the URL for the repository.
+3. Open Terminal. Change the directory to the location where you want the cloned directory.
+4. Type git clone, and then paste the URL
+5. Press Enter.
+
+### Local Deployment
+1. On GitHub.com, navigate to the [zohaibshahzadkhan/SocialVibe-React-App](https://github.com/zohaibshahzadkhan/SocialVibe-React-App) repository and clone it.
+2. Once you clone the repository you will need to install the node packages, you can do this by typing "npm install" into the terminal from root directory of the project.
+3. Run `npm run dev` from the root of the project folder to start local deployment server
+
