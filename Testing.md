@@ -341,8 +341,5 @@ With the Lighthouse tests, there are some best practices issues due to Cloudinar
 
 </details>
 
-
-
-
 ## Devices used for manual testing
 Parrothub was tested using Chrome desktop and mobile browsers
