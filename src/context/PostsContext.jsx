@@ -145,7 +145,6 @@ export const PostsProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the Posts context
 export const usePosts = () => {
   return useContext(PostsContext);
 };

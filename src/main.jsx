@@ -1,24 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-} from 'react-router-dom';
-import App from './App.jsx';
-import SignUp from './pages/SignUp.jsx';
-import './index.css';
-import Login from './pages/Login.jsx';
-import Feed from './pages/Feed.jsx';
-import Profile from './pages/Profile.jsx';
-import Search from './pages/Search.jsx';
-import Friends from './pages/Friends.jsx';
-import EditProfile from './pages/EditProfile.jsx';
-import AppProviders from './context/AppContext.jsx';
-import Post from './pages/Post.jsx';
-import Home from './pages/Home.jsx';
-import './api/apiDefaults.js';
+} from "react-router-dom";
+import App from "./App.jsx";
+import SignUp from "./pages/SignUp.jsx";
+import "./index.css";
+import Login from "./pages/Login.jsx";
+import Feed from "./pages/Feed.jsx";
+import Profile from "./pages/Profile.jsx";
+import Search from "./pages/Search.jsx";
+import Friends from "./pages/Friends.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
+import AppProviders from "./context/AppContext.jsx";
+import Post from "./pages/Post.jsx";
+import Home from "./pages/Home.jsx";
+import "./api/apiDefaults.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +37,7 @@ const router = createBrowserRouter(
   )
 );
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppProviders>
       <RouterProvider router={router} />

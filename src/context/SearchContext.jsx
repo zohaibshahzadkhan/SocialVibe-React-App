@@ -1,5 +1,3 @@
-// context/SearchContext.js
-
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 
@@ -17,11 +15,9 @@ export const SearchProvider = ({ children }) => {
   const submitForm = async () => {
     try {
       if (!query) {
-        // If query is empty, clear users and posts
         setUsers([]);
         setPosts([]);
       } else {
-        // If query is not empty, perform the search
         const response = await axios.post('/api/search', { query });
         setUsers(response.data.users);
         setPosts(response.data.posts);

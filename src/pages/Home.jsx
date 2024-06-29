@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => {
   return (
@@ -63,7 +63,6 @@ const Home = () => {
               <p className="text-gray-700">Chat with friends in real-time.</p>
             </div>
 
-            {/* Posts Feature */}
             <div className="feature text-center p-8 rounded-lg bg-purple-100 shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -14,7 +14,7 @@ const SignUp = () => {
 
   useEffect(() => {
     setErrors([]);
-  },[]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

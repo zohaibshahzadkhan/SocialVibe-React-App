@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import FeedForm from '../components/FeedForm';
-import FeedItem from '../components/FeedItem';
-import { usePosts } from '../context/PostsContext';
-import { useUser } from '../context/UserContext';
-import { useParams } from 'react-router-dom';
-import ProfileInfo from '../components/ProfileInfo';
-import '../styles/Profile.css';
+import React, { useEffect } from "react";
+import FeedForm from "../components/FeedForm";
+import FeedItem from "../components/FeedItem";
+import { usePosts } from "../context/PostsContext";
+import { useUser } from "../context/UserContext";
+import { useParams } from "react-router-dom";
+import ProfileInfo from "../components/ProfileInfo";
+import "../styles/Profile.css";
 
 const Profile = () => {
   const { user } = useUser();
