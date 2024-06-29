@@ -343,3 +343,111 @@ With the Lighthouse tests, there are some best practices issues due to Cloudinar
 
 ## Devices used for manual testing
 Parrothub was tested using Chrome desktop and mobile browsers
+
+
+
+## Code Validation
+### HTML
+
+<details>
+<summary>Home Page</summary>
+
+![Home Page](readme-media/validation/html/Home-page.png)
+
+</details>
+
+<details>
+<summary>Friends Page</summary>
+
+![Friends Page](readme-media/validation/html/Friends-page.png)
+
+</details>
+
+<details>
+<summary>Profile Page</summary>
+
+![Profile Page](readme-media/validation/html/Profile-page.png)
+
+</details>
+
+<details>
+<summary>Login Page</summary>
+
+![Login Page](readme-media/validation/html/Login-page.png)
+
+</details>
+
+<details>
+<summary>Signup Page</summary>
+
+![Signup Page](readme-media/validation/html/Signup-page.png)
+
+</details>
+
+<details>
+<summary>Search Page</summary>
+
+![Search Page](readme-media/validation/html/Search-page.png)
+
+</details>
+
+
+<details>
+<summary>Edit Profile Page</summary>
+
+![Edit Profile Page](readme-media/validation/html/Edit-profile.png)
+
+</details>
+
+### CSS
+
+
+<details>
+<summary>Home Page</summary>
+
+![Home Page](readme-media/validation/css/Home-page.png)
+
+</details>
+
+<details>
+<summary>Friends Page</summary>
+
+![Friends Page](readme-media/validation/css/Friends-page.png)
+
+</details>
+
+<details>
+<summary>Profile Page</summary>
+
+![Profile Page](readme-media/validation/css/Profile-page.png)
+
+</details>
+
+<details>
+<summary>Login Page</summary>
+
+![Login Page](readme-media/validation/css/Login-page.png)
+
+</details>
+
+<details>
+<summary>Signup Page</summary>
+
+![Signup Page](readme-media/validation/css/Signup-page.png)
+
+</details>
+
+<details>
+<summary>Search Page</summary>
+
+![Search Page](readme-media/validation/css/Search-page.png)
+
+</details>
+
+
+<details>
+<summary>Edit Profile Page</summary>
+
+![Edit Profile Page](readme-media/validation/css/Edit-profile.png)
+
+</details>
