@@ -3,13 +3,28 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import FeedForm from "../../components/FeedForm";
 import { PostsProvider } from "../../context/PostsContext";
 import { baseURL, capturedRequests } from "../../mocks/handlers";
+import { UserProvider } from "../../context/UserContext";
+import { ToastProvider } from "../../context/ToastContext";
+
+jest.mock("../../context/UserContext", () => ({
+  useUser: () => ({
+    user: {
+      isAuthenticated: true,
+    },
+  }),
+  UserProvider: ({ children }) => <div>{children}</div>
+}));
 
 describe("FeedForm", () => {
   it("submits the post form and makes a POST request", async () => {
     render(
-      <PostsProvider>
-        <FeedForm />
-      </PostsProvider>
+      <ToastProvider>
+        <UserProvider>
+          <PostsProvider>
+            <FeedForm />
+          </PostsProvider>
+        </UserProvider>
+      </ToastProvider>
     );
 
     fireEvent.change(
@@ -39,5 +54,4 @@ describe("FeedForm", () => {
       )
     ).toHaveLength(1);
   });
-
 });

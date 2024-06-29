@@ -19,7 +19,7 @@ jest.mock("../../context/UserContext", () => ({
 
 describe("ProfileInfo", () => {
   it("renders profile information and actions correctly", async () => {
-    const userId = "4f38f403-24b0-42a6-ae40-a8b9637c8789"; // Replace with a valid userId for testing
+    const userId = "4f38f403-24b0-42a6-ae40-a8b9637c8789";
 
     render(
       <MemoryRouter initialEntries={[`/profile/${userId}`]}>
