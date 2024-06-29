@@ -466,3 +466,7 @@ Milestones are set to mark significant stages or deadlines within the project ti
   <summary>Example Milestones</summary>
   <img src="readme-media/github-project-images/milestones.png" alt="Example Milestones">
 </details>
+
+## Testing 
+
+A separate testing document has been created as [Testing.md](Testing.md)
