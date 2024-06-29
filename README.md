@@ -435,7 +435,7 @@ Using GitHub issues, a user story template was created to define features and ta
 
 <details>
   <summary>Userstory Template</summary>
-  <img src="readme-media/github-project-images/user-storypng" alt="user story template">
+  <img src="readme-media/github-project-images/user-story.png" alt="user story template">
 </details>
 
 ### Kanban Board
