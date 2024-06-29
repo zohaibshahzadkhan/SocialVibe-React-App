@@ -372,3 +372,97 @@ To address this issue, we can we either return null or a form based on the user'
 
    export default FeedForm;
 
+## Technologies Used
+
+### Languages
+- HTML
+- CSS
+- JavaScript
+- Jsx
+
+### Frameworks and Libraries
+- **Axios**
+  - **Version**: 1.7.2
+  - **Description**: Promise-based HTTP client for making API requests within the React application. Axios handles API communication efficiently and manages CORS (Cross-Origin Resource Sharing) seamlessly.
+  - **Justification**: Used for interacting with API endpoints and managing HTTP requests in a structured and efficient manner.
+
+- **React**
+  - **Version**: 18.2.0
+  - **Description**: JavaScript library for building user interfaces. React enables component-based UI development and state management, serving as the core framework for the application.
+  - **Justification**: Essential for creating interactive and responsive user interfaces, managing application state, and rendering components efficiently.
+
+- **React Router Dom**
+  - **Version**: 6.23.1
+  - **Description**: Declarative routing library for React applications. React Router Dom facilitates navigation between different views and components based on the URL, providing a seamless single-page application (SPA) experience.
+  - **Justification**: Used for handling client-side routing within the application, enabling navigation and rendering of components based on the URL.
+
+- **Serve**
+  - **Version**: 14.2.3
+  - **Description**: Simple server for serving static files, typically used to serve the production build output directory (`dist`) after building the application using Vite.
+  - **Justification**: Used to serve static files generated during the production build process, ensuring that the application runs correctly in a production environment.
+
+- **Tailwind CSS**
+  - **Version**: 3.4.4
+  - **Description**: Utility-first CSS framework for rapidly building custom user interfaces.
+  - **Justification**: Enables rapid UI development with its utility-first approach, reducing the need for writing custom CSS and speeding up the styling process.
+
+- **Jest**
+  - **Version**: 29.7.0
+  - **Description**: JavaScript testing framework with a focus on simplicity.
+  - **Justification**: Used for writing and running tests to ensure the reliability and functionality of JavaScript code, including React components and utility functions.
+
+- **Vite**
+  - **Version**: 5.2.0
+  - **Description**: Next-generation frontend tool that sets up fast refresh and optimized production builds.
+  - **Justification**: Provides a development environment with fast build times and instant hot module replacement (HMR), enhancing the developer experience and improving productivity.
+
+- **React Testing Library**
+  - **Description**: Simple and complete React DOM testing utilities that encourage good testing practices.
+  - **Justification**: Used for testing React components by focusing on user interactions, ensuring that the components behave as expected from the user's perspective, promoting effective and reliable testing practices.
+
+### Tools & Programs
+- **Chrome DevTools**: Built-in debugging tools for various browser debugging tasks.
+
+## Agile Development
+
+### About
+
+Agile development is adopted to efficiently manage the development process of the project, ensuring flexibility and iterative improvements.
+
+### User Story Template
+
+Using GitHub issues, a user story template was created to define features and tasks for the project. The template categorizes tasks into three labels: must have, could have, and should have.
+
+<details>
+  <summary>Userstory Template</summary>
+  <img src="readme-media/github-project-images/user-storypng" alt="user story template">
+</details>
+
+### Kanban Board
+
+The project's progress and task status are visualized through a Kanban board. Each task is represented as a card that can be moved across columns indicating its current status—todo, in progress, and completed.
+
+  [Kanban Board](https://github.com/users/zohaibshahzadkhan/projects/8)
+
+<details>
+  <summary>Example Kanban Board</summary>
+  <img src="readme-media/github-project-images/kanban-board.png" alt="Example Kanban Board">
+</details>
+
+### MoSCoW Prioritization
+
+MoSCoW prioritization technique is employed to prioritize project requirements based on their importance and urgency. This ensures that essential features are addressed first, followed by those of lower priority.
+
+<details>
+  <summary>MoSCoW Prioritization Example</summary>
+  <img src="readme-media/github-project-images/moscow.png" alt="MoSCoW Prioritization Example">
+</details>
+
+### Milestones
+
+Milestones are set to mark significant stages or deadlines within the project timeline. Each milestone is linked with relevant issues and tasks to ensure alignment with project goals and deadlines.
+
+<details>
+  <summary>Example Milestones</summary>
+  <img src="readme-media/github-project-images/milestones.png" alt="Example Milestones">
+</details>
