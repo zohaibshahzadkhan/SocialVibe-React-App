@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
-import "../styles/Login.css";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
+import '../styles/Login.css';
 
-const Login = () => {
+function Login() {
   const { login, errors, setErrors } = useUser();
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setForm((prevForm) => ({
+    setForm(prevForm => ({
       ...prevForm,
       [name]: value,
     }));
   };
 
   useEffect(() => {
-    setErrors([])
-  },[]);
+    setErrors([]);
+  }, [setErrors]);
 
-  const submitForm = async (e) => {
+  const submitForm = async e => {
     e.preventDefault();
     const result = await login(form);
     if (result.success) {
-      navigate("/feed");
+      navigate('/feed');
     }
   };
 
@@ -42,10 +42,10 @@ const Login = () => {
           </p>
 
           <p className="font-bold">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{' '}
             <Link to="/signup" className="underline">
               Click here
-            </Link>{" "}
+            </Link>{' '}
             to create one!
           </p>
         </div>
@@ -55,10 +55,11 @@ const Login = () => {
         <div className="p-12 bg-white border border-gray-200 rounded-lg">
           <form className="space-y-6" onSubmit={submitForm}>
             <div>
-              <label>E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <br />
               <input
                 type="email"
+                id="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
@@ -68,10 +69,11 @@ const Login = () => {
             </div>
 
             <div>
-              <label>Password</label>
+              <label htmlFor="password">Password</label>
               <br />
               <input
                 type="password"
+                id="password"
                 name="password"
                 value={form.password}
                 onChange={handleChange}
@@ -82,8 +84,8 @@ const Login = () => {
 
             {errors.length > 0 && (
               <div className="bg-red-500 text-white rounded-lg p-6">
-                {errors.map((error, index) => (
-                  <p key={index}>{error}</p>
+                {errors.map(error => (
+                  <p key={error}>{error}</p>
                 ))}
               </div>
             )}
@@ -101,6 +103,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

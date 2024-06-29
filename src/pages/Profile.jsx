@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import FeedForm from "../components/FeedForm";
-import FeedItem from "../components/FeedItem";
-import { usePosts } from "../context/PostsContext";
-import { useUser } from "../context/UserContext";
-import { useParams } from "react-router-dom";
-import ProfileInfo from "../components/ProfileInfo";
-import "../styles/Profile.css";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import FeedForm from '../components/FeedForm';
+import FeedItem from '../components/FeedItem';
+import { usePosts } from '../context/PostsContext';
+import { useUser } from '../context/UserContext';
+import ProfileInfo from '../components/ProfileInfo';
+import '../styles/Profile.css';
 
-const Profile = () => {
+function Profile() {
   const { user } = useUser();
   const { posts, getUserFeed, postUser, setPosts } = usePosts();
   const { userId } = useParams();
@@ -18,8 +18,8 @@ const Profile = () => {
     }
   }, [user.isAuthenticated, userId]);
 
-  const deletePost = (id) => {
-    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  const deletePost = id => {
+    setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
   return (
@@ -33,7 +33,7 @@ const Profile = () => {
             <FeedForm />
           </div>
         ) : null}
-        {posts.map((post) => (
+        {posts.map(post => (
           <div
             className="p-4 bg-white border border-gray-200 rounded-lg mb-4"
             key={post.id}
@@ -44,6 +44,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Profile;

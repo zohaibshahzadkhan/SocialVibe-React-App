@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import FeedItem from "../components/FeedItem";
-import { useSearch } from "../context/SearchContext";
-import useLoading from "../hooks/useLoading";
-import "../styles/Search.css";
+import React, { useState } from 'react';
+import FeedItem from '../components/FeedItem';
+import { useSearch } from '../context/SearchContext';
+import useLoading from '../hooks/useLoading';
+import '../styles/Search.css';
 
-const Search = () => {
+function Search() {
   const { query, setQuery, users, posts, submitForm, setUsers, setPosts } =
     useSearch();
   const [searched, setSearched] = useState(false);
   const { loading, handleLoading } = useLoading(submitForm);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const inputValue = e.target.value;
     setQuery(inputValue);
-    if (inputValue === "") {
+    if (inputValue === '') {
       setUsers([]);
       setPosts([]);
     }
     setSearched(false);
   };
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = e => {
     e.preventDefault();
     setSearched(true);
     handleLoading();
   };
 
-  const deletePost = (id) => {
-    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  const deletePost = id => {
+    setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
   return (
@@ -58,7 +58,7 @@ const Search = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                ></path>
+                />
               </svg>
             </button>
           </form>
@@ -68,7 +68,7 @@ const Search = () => {
           <>
             {users.length > 0 ? (
               <div className="p-4 bg-white border border-gray-200 rounded-lg users-grid">
-                {users.map((user) => (
+                {users.map(user => (
                   <div
                     key={user.id}
                     className="p-4 text-center bg-gray-100 rounded-lg"
@@ -101,7 +101,7 @@ const Search = () => {
             )}
 
             {posts.length > 0 ? (
-              posts.map((post) => (
+              posts.map(post => (
                 <div
                   key={post.id}
                   className="p-4 bg-white border border-gray-200 rounded-lg"
@@ -125,6 +125,6 @@ const Search = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Search;

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { usePosts } from '../context/PostsContext';
 import { useUser } from '../context/UserContext';
 
-const FeedForm = () => {
+function FeedForm() {
   const { submitPost } = usePosts();
   const { user } = useUser();
 
@@ -10,7 +10,7 @@ const FeedForm = () => {
   const [url, setUrl] = useState(null);
   const fileInputRef = useRef(null);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -21,9 +21,9 @@ const FeedForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('image', fileInputRef.current.files[0]);
     formData.append('body', body);
     submitPost(formData);
@@ -42,10 +42,10 @@ const FeedForm = () => {
       <div className="p-4">
         <textarea
           value={body}
-          onChange={(e) => setBody(e.target.value)}
+          onChange={e => setBody(e.target.value)}
           className="p-4 w-full bg-gray-100 rounded-lg"
           placeholder="What are you thinking about?"
-        ></textarea>
+        />
 
         {url && (
           <div id="preview">
@@ -59,15 +59,19 @@ const FeedForm = () => {
       </div>
 
       <div className="p-4 border-t border-gray-100 flex justify-between">
-        <label className="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg cursor-pointer">
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="hidden"
-            ref={fileInputRef}
-          />
+        <label
+          htmlFor="file-upload"
+          className="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg cursor-pointer"
+        >
           Attach image
         </label>
+        <input
+          type="file"
+          id="file-upload"
+          onChange={handleFileChange}
+          className="hidden"
+          ref={fileInputRef}
+        />
 
         <button
           type="submit"
@@ -78,6 +82,6 @@ const FeedForm = () => {
       </div>
     </form>
   );
-};
+}
 
 export default FeedForm;

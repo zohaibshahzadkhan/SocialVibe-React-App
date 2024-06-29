@@ -1,13 +1,12 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState, useContext, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const SearchContext = createContext();
 
-export const useSearch = () => {
-  return useContext(SearchContext);
-};
+export const useSearch = () => useContext(SearchContext);
 
-export const SearchProvider = ({ children }) => {
+export function SearchProvider({ children }) {
   const [query, setQuery] = useState('');
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -27,19 +26,28 @@ export const SearchProvider = ({ children }) => {
     }
   };
 
+  const memoizedValue = useMemo(
+    () => ({
+      query,
+      setQuery,
+      users,
+      posts,
+      submitForm,
+      setUsers,
+      setPosts,
+    }),
+    [query, setQuery, users, posts]
+  );
+
   return (
-    <SearchContext.Provider
-      value={{
-        query,
-        setQuery,
-        users,
-        posts,
-        submitForm,
-        setUsers,
-        setPosts,
-      }}
-    >
+    <SearchContext.Provider value={memoizedValue}>
       {children}
     </SearchContext.Provider>
   );
+}
+
+SearchProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
+
+export default SearchProvider;

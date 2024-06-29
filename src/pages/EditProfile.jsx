@@ -1,7 +1,7 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useUser } from '../context/UserContext';
 
-const EditProfile = () => {
+function EditProfile() {
   const { user, errors, submitForm, setErrors } = useUser();
   const [form, setForm] = useState({
     email: user.email || '',
@@ -9,19 +9,19 @@ const EditProfile = () => {
   });
   const fileRef = useRef(null);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setForm((prevForm) => ({
+    setForm(prevForm => ({
       ...prevForm,
       [name]: value,
     }));
   };
 
-  useEffect(()=> {
-    setErrors([])
-  },[])
+  useEffect(() => {
+    setErrors([]);
+  }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     submitForm(form, fileRef);
   };
@@ -31,9 +31,10 @@ const EditProfile = () => {
       <div className="p-12 bg-white border border-gray-200 rounded-lg">
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label>Name</label>
+            <label htmlFor="name">Name</label>
             <br />
             <input
+              id="name"
               type="text"
               name="name"
               value={form.name}
@@ -44,9 +45,10 @@ const EditProfile = () => {
           </div>
 
           <div>
-            <label>E-mail</label>
+            <label htmlFor="email">E-mail</label>
             <br />
             <input
+              id="email"
               type="email"
               name="email"
               value={form.email}
@@ -57,21 +59,24 @@ const EditProfile = () => {
           </div>
 
           <div>
-            <label>Avatar</label>
+            <label htmlFor="avatar">Avatar</label>
             <br />
-            <input type="file" ref={fileRef} />
+            <input id="avatar" type="file" ref={fileRef} />
           </div>
 
           {errors.length > 0 && (
             <div className="bg-red-500 text-white rounded-lg p-6">
-              {errors.map((error, index) => (
-                <p key={index}>{error}</p>
+              {errors.map(error => (
+                <p key={error}>{error}</p>
               ))}
             </div>
           )}
 
           <div>
-            <button className="py-4 px-6 bg-purple-600 text-white rounded-lg">
+            <button
+              type="submit"
+              className="py-4 px-6 bg-purple-600 text-white rounded-lg"
+            >
               Save changes
             </button>
           </div>
@@ -79,6 +84,6 @@ const EditProfile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default EditProfile;

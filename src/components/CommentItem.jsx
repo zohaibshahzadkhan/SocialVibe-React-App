@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const CommentItem = ({ comment }) => {
+function CommentItem({ comment }) {
   return (
     <div className="mb-6 flex items-center justify-between">
       <div className="flex items-center space-x-6">
@@ -26,6 +27,18 @@ const CommentItem = ({ comment }) => {
       </div>
     </div>
   );
+}
+
+CommentItem.propTypes = {
+  comment: PropTypes.shape({
+    created_by: PropTypes.shape({
+      get_avatar: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    created_at_formatted: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default CommentItem;

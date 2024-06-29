@@ -1,7 +1,7 @@
 import React from 'react';
 import { useToast } from '../context/ToastContext';
 
-const Toast = () => {
+function Toast() {
   const { toast } = useToast();
 
   return (
@@ -13,6 +13,6 @@ const Toast = () => {
       </div>
     )
   );
-};
+}
 
 export default Toast;

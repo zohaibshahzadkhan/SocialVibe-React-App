@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useFriendship } from "../context/FriendshipContext";
-import { usePosts } from "../context/PostsContext";
-import { useToast } from "../context/ToastContext";
-import useLoading from "../hooks/useLoading";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useFriendship } from '../context/FriendshipContext';
+import { usePosts } from '../context/PostsContext';
+import { useToast } from '../context/ToastContext';
+import useLoading from '../hooks/useLoading';
 
-const Friends = () => {
+function Friends() {
   const { postUser, getUserFeed } = usePosts();
-  const { userId } = useParams();
+  const { userId: paramUserId } = useParams();
   const { friends, friendshipRequests, handleRequest, getFriends } =
     useFriendship();
   const { showToast } = useToast();
@@ -21,11 +21,11 @@ const Friends = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      await handleGetFriends(userId);
-      await handleGetUserFeed(userId);
+      await handleGetFriends(paramUserId);
+      await handleGetUserFeed(paramUserId);
     };
     loadData();
-  }, [userId]);
+  }, [paramUserId]);
 
   useEffect(() => {
     setRequests(friendshipRequests);
@@ -35,32 +35,32 @@ const Friends = () => {
     postUser.friends_count += 1;
   };
 
-  const handleAcceptRequest = async (userId) => {
-    try {
-      await handleRequest("accepted", userId);
-      incrementFriendCount();
-      removeRequest(userId);
-      showToast(5000, "Friend request accepted!", "bg-emerald-500");
-    } catch (error) {
-      console.error("Error accepting request:", error);
-    }
-  };
-
-  const handleRejectRequest = async (userId) => {
-    try {
-      await handleRequest("rejected", userId);
-      removeRequest(userId);
-      showToast(5000, "Friend request rejected!", "bg-red-500");
-    } catch (error) {
-      console.error("Error rejecting request:", error);
-    }
-  };
-
-  const removeRequest = (userId) => {
+  const removeRequest = userId => {
     const updatedRequests = requests.filter(
-      (request) => request.created_by.id !== userId
+      request => request.created_by.id !== userId
     );
     setRequests(updatedRequests);
+  };
+
+  const handleAcceptRequest = async userId => {
+    try {
+      await handleRequest('accepted', userId);
+      incrementFriendCount();
+      removeRequest(userId);
+      showToast(5000, 'Friend request accepted!', 'bg-emerald-500');
+    } catch (error) {
+      console.error('Error accepting request:', error);
+    }
+  };
+
+  const handleRejectRequest = async userId => {
+    try {
+      await handleRequest('rejected', userId);
+      removeRequest(userId);
+      showToast(5000, 'Friend request rejected!', 'bg-red-500');
+    } catch (error) {
+      console.error('Error rejecting request:', error);
+    }
   };
 
   if (loadingFriends || loadingFeed) {
@@ -73,10 +73,10 @@ const Friends = () => {
 
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div className="col-span-2 ">
+      <div className="col-span-2">
         <div className="p-4 bg-white border border-gray-200 text-center rounded-lg shadow-md">
           <img
-            src={postUser.get_avatar || "https://via.placeholder.com/50"}
+            src={postUser.get_avatar || 'https://via.placeholder.com/50'}
             className="w-24 h-24 rounded-full mx-auto mb-4"
             alt="User Avatar"
           />
@@ -100,10 +100,10 @@ const Friends = () => {
             <h2 className="mb-6 text-2xl font-semibold text-gray-800">
               Friendship requests
             </h2>
-            {requests.map((friendshipRequest) => (
+            {requests.map(friendshipRequest => (
               <div
-                className="p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm mb-4"
                 key={friendshipRequest.id}
+                className="p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm mb-4"
               >
                 <div className="flex items-center justify-center mb-4">
                   <img
@@ -118,13 +118,14 @@ const Friends = () => {
                       </Link>
                     </p>
                     <p className="text-sm text-gray-500">
-                      {friendshipRequest.created_by.friends_count} friends •{" "}
+                      {friendshipRequest.created_by.friends_count} friends •{' '}
                       {friendshipRequest.created_by.posts_count} posts
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-center space-x-4">
                   <button
+                    type="button"
                     className="py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none"
                     onClick={() =>
                       handleAcceptRequest(friendshipRequest.created_by.id)
@@ -133,6 +134,7 @@ const Friends = () => {
                     Accept
                   </button>
                   <button
+                    type="button"
                     className="py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none"
                     onClick={() =>
                       handleRejectRequest(friendshipRequest.created_by.id)
@@ -148,23 +150,24 @@ const Friends = () => {
 
         {friends.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {friends.map((user) => (
+            {friends.map(friend => (
               <div
+                key={friend.id}
                 className="p-4 bg-white border border-gray-200 rounded-lg shadow-md"
-                key={user.id}
               >
                 <div className="flex items-center justify-center mb-4">
                   <img
-                    src={user.get_avatar}
+                    src={friend.get_avatar}
                     className="w-16 h-16 rounded-full"
                     alt="Friend Avatar"
                   />
                   <div className="ml-4">
                     <p className="text-lg font-semibold text-gray-800">
-                      <Link to={`/profile/${user.id}`}>{user.name}</Link>
+                      <Link to={`/profile/${friend.id}`}>{friend.name}</Link>
                     </p>
                     <p className="text-sm text-gray-500">
-                      {user.friends_count} friends • {user.posts_count} posts
+                      {friend.friends_count} friends • {friend.posts_count}{' '}
+                      posts
                     </p>
                   </div>
                 </div>
@@ -175,6 +178,6 @@ const Friends = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Friends;

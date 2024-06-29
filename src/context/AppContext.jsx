@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ToastProvider } from './ToastContext';
 import { UserProvider } from './UserContext';
 import { PostsProvider } from './PostsContext';
 import { SearchProvider } from './SearchContext';
 import { FriendshipProvider } from './FriendshipContext';
 
-const AppProviders = ({ children }) => {
+function AppProviders({ children }) {
   return (
     <ToastProvider>
       <UserProvider>
@@ -17,6 +18,10 @@ const AppProviders = ({ children }) => {
       </UserProvider>
     </ToastProvider>
   );
+}
+
+AppProviders.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AppProviders;

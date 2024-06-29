@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useUser } from "../context/UserContext";
-import "../styles/SignUp.css";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
+import '../styles/SignUp.css';
 
-const SignUp = () => {
+function SignUp() {
   const { signup, errors, setErrors } = useUser();
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password1: "",
-    password2: "",
+    name: '',
+    email: '',
+    password1: '',
+    password2: '',
   });
 
   useEffect(() => {
     setErrors([]);
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setForm((prevForm) => ({
+    setForm(prevForm => ({
       ...prevForm,
       [name]: value,
     }));
   };
 
-  const submitForm = (e) => {
+  const submitForm = e => {
     e.preventDefault();
     signup(form);
     setForm({
-      email: "",
-      name: "",
-      password1: "",
-      password2: "",
+      email: '',
+      name: '',
+      password1: '',
+      password2: '',
     });
   };
 
@@ -47,10 +47,10 @@ const SignUp = () => {
           </p>
 
           <p className="font-bold">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Link to="/login" className="underline">
               Click here
-            </Link>{" "}
+            </Link>{' '}
             to log in!
           </p>
         </div>
@@ -113,8 +113,8 @@ const SignUp = () => {
 
             {errors.length > 0 && (
               <div className="bg-red-500 text-white rounded-lg p-6">
-                {errors.map((error, index) => (
-                  <p key={index}>{error}</p>
+                {errors.map(error => (
+                  <p key={error}>{error}</p>
                 ))}
               </div>
             )}
@@ -132,6 +132,6 @@ const SignUp = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SignUp;

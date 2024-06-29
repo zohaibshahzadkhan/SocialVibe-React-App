@@ -4,7 +4,7 @@ import FeedItem from '../components/FeedItem';
 import { usePosts } from '../context/PostsContext';
 import { useUser } from '../context/UserContext';
 
-const Feed = () => {
+function Feed() {
   const { posts, getFeed, setPosts } = usePosts();
   const { user } = useUser();
 
@@ -14,8 +14,8 @@ const Feed = () => {
     }
   }, [user.isAuthenticated]);
 
-  const deletePost = (id) => {
-    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  const deletePost = id => {
+    setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
   return (
@@ -24,7 +24,7 @@ const Feed = () => {
         <div className="bg-white border border-gray-200 rounded-lg">
           <FeedForm />
         </div>
-        {posts.map((post) => (
+        {posts.map(post => (
           <div
             className="p-4 bg-white border border-gray-200 rounded-lg"
             key={post.id}
@@ -35,6 +35,6 @@ const Feed = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Feed;

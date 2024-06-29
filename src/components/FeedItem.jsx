@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { usePosts } from '../context/PostsContext';
 import { useUser } from '../context/UserContext';
 
-const FeedItem = ({ post, onDeletePost }) => {
+function FeedItem({ post, onDeletePost }) {
   const [showExtraModal, setShowExtraModal] = useState(false);
   const { likePost, deletePost } = usePosts();
   const { user } = useUser();
@@ -44,7 +45,7 @@ const FeedItem = ({ post, onDeletePost }) => {
 
       {post.attachments && post.attachments.length > 0 && (
         <div>
-          {post.attachments.map((image) => (
+          {post.attachments.map(image => (
             <img
               key={image.id}
               src={image.get_image}
@@ -66,8 +67,16 @@ const FeedItem = ({ post, onDeletePost }) => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 cursor-pointer"
               onClick={handleLike}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  handleLike();
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label="Like"
             >
               <path
                 strokeLinecap="round"
@@ -95,14 +104,28 @@ const FeedItem = ({ post, onDeletePost }) => {
                 d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"
               />
             </svg>
-            <Link to={`/post/${post.id}`} className="text-gray-500 text-xs">
+            <Link
+              to={`/post/${post.id}`}
+              className="text-gray-500 text-xs cursor-pointer"
+            >
               {post.comments_count} comments
             </Link>
           </div>
         </div>
         {user && user.id === post.created_by.id && (
           <div>
-            <div onClick={toggleExtraModal}>
+            <div
+              className="cursor-pointer"
+              onClick={toggleExtraModal}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  toggleExtraModal();
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label="Toggle options"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -125,7 +148,18 @@ const FeedItem = ({ post, onDeletePost }) => {
       {showExtraModal && user && user.id === post.created_by.id && (
         <div>
           <div className="flex justify-end space-x-6 items-center">
-            <div className="flex items-center space-x-2" onClick={handleDelete}>
+            <div
+              className="cursor-pointer"
+              onClick={handleDelete}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  handleDelete();
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label="Delete post"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -147,6 +181,28 @@ const FeedItem = ({ post, onDeletePost }) => {
       )}
     </div>
   );
+}
+
+FeedItem.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    created_by: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      get_avatar: PropTypes.string.isRequired,
+    }).isRequired,
+    created_at_formatted: PropTypes.string.isRequired,
+    attachments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        get_image: PropTypes.string.isRequired,
+      })
+    ),
+    body: PropTypes.string.isRequired,
+    likes_count: PropTypes.number.isRequired,
+    comments_count: PropTypes.number.isRequired,
+  }).isRequired,
+  onDeletePost: PropTypes.func.isRequired,
 };
 
 export default FeedItem;

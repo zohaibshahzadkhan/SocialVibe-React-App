@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 
-const NavBar = () => {
+function NavBar() {
   const { user } = useUser();
   return (
     <nav className="py-10 px-8 border-b border-gray-200">
@@ -45,7 +45,7 @@ const NavBar = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  ></path>
+                  />
                 </svg>
               </Link>
             </div>
@@ -81,6 +81,6 @@ const NavBar = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default NavBar;

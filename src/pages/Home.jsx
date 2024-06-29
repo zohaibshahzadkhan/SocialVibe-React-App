@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const Home = () => {
+function Home() {
   return (
     <div className="min-h-screen">
       <section className="py-16">
@@ -89,6 +89,6 @@ const Home = () => {
       </section>
     </div>
   );
-};
+}
 
 export default Home;
