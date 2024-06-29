@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { usePosts } from '../context/PostsContext';
+import { useUser } from '../context/UserContext';
 
 const FeedForm = () => {
   const { submitPost } = usePosts();
+  const { user } = useUser();
+
   const [body, setBody] = useState('');
   const [url, setUrl] = useState(null);
   const fileInputRef = useRef(null);
@@ -29,6 +32,10 @@ const FeedForm = () => {
     fileInputRef.current.value = null;
     setUrl(null);
   };
+
+  if (!user.isAuthenticated) {
+    return null;
+  }
 
   return (
     <form onSubmit={handleSubmit} method="post">
