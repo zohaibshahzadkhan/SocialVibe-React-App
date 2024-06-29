@@ -348,6 +348,7 @@ Parrothub was tested using Chrome desktop and mobile browsers
 
 ## Code Validation
 ### HTML
+No Errors were found
 
 <details>
 <summary>Home Page</summary>
@@ -400,7 +401,7 @@ Parrothub was tested using Chrome desktop and mobile browsers
 </details>
 
 ### CSS
-
+No Errors were found
 
 <details>
 <summary>Home Page</summary>
