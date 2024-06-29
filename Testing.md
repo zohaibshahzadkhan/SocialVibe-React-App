@@ -294,3 +294,55 @@ I have 4 test suits with 9 tests for my code.
 ##### Delete Post
 - **Description**: Delete a post from the profile page.
 - **Expected Outcome**: The post is removed, and a success message is displayed. (Pass)
+
+
+## Lighthouse/ Accessibility Testing
+With the Lighthouse tests, there are some best practices issues due to Cloudinary using HTTP protocol, which affects HTTPS/HTTP request best-practice scores negatively.
+
+<details>
+<summary>Home Page</summary>
+
+![Home Page](readme-media/validation/lighthouse-report/Home-page.png)
+
+</details>
+
+<details>
+<summary>Friends Page</summary>
+
+![Friends Page](readme-media/validation/lighthouse-report/Friends-page.png)
+
+</details>
+
+<details>
+<summary>Profile Page</summary>
+
+![Profile Page](readme-media/validation/lighthouse-report/Profile-page.png)
+
+</details>
+
+<details>
+<summary>Login Page</summary>
+
+![Login Page](readme-media/validation/lighthouse-report/Login-page.png)
+
+</details>
+
+<details>
+<summary>Signup Page</summary>
+
+![Signup Page](readme-media/validation/lighthouse-report/Signup-page.png)
+
+</details>
+
+<details>
+<summary>Search Page</summary>
+
+![Search Page](readme-media/validation/lighthouse-report/Search-page.png)
+
+</details>
+
+
+
+
+## Devices used for manual testing
+Parrothub was tested using Chrome desktop and mobile browsers
