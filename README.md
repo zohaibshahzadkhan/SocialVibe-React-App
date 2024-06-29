@@ -335,17 +335,17 @@ All contexts are wrapped in the `AppProviders` component to provide global state
 
 ### Issue Description
 
-When a user manually types the URL of a feed item in the browser without being authenticated, the feed item is visible, but the user cannot make requests due to the lack of authentication token.
+When a user manually types the URL of a feed in the browser without being authenticated, the feed form is visible, but the user cannot make requests due to the lack of authentication token.
 
 
 <details>
-  <summary>FeedItem bug</summary>
-  <img src="readme-media/feeditem-bug.png" alt="feed item bug">
+  <summary>FeedForm bug</summary>
+  <img src="readme-media/feedform-bug.png" alt="feed form bug">
 </details>
 
 ### Proposed Solution
 
-To address this issue, we can conditionally render the feed form based on the user's authentication status. The `isAuthenticated` flag is already available in the `UserContext`, which manages user authentication state throughout the application.
+To address this issue, we can we either return null or a form based on the user's authentication status. The `isAuthenticated` flag is already available in the `UserContext`, which manages user authentication state throughout the application.
 
 #### Implementation Steps
 
