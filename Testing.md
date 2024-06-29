@@ -347,6 +347,15 @@ Parrothub was tested using Chrome desktop and mobile browsers
 
 
 ## Code Validation
+### Jsx Linter and Formatter
+No Errors were found
+<details>
+<summary>Linter and Formatter Text</summary>
+
+![Linter and Formatter Text](readme-media/validation/eslint.png)
+
+</details>
+
 ### HTML
 No Errors were found
 
