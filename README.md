@@ -67,3 +67,178 @@ All user stories were entered as issues in a GitHub Kanban project. Follow the l
 - [#11](https://github.com/zohaibshahzadkhan/SocialVibe-React-App/issues/18) - As a user, I want to use a chat feature so that I can communicate directly with my friends (future development).
 - [#12](https://github.com/zohaibshahzadkhan/SocialVibe-React-App/issues/17) - As a user, I want to see trending topics so that I can stay updated on popular content (future development).
 - [#13](https://github.com/zohaibshahzadkhan/SocialVibe-React-App/issues/19) - As a user, I want to receive friend suggestions so that I can connect with more people (future development).
+
+# Design
+### ERD
+<details>
+  <summary>Entity Relationship Diagram</summary>
+  <img src="readme-media/ERD.png" alt="ERD">
+</details>
+
+
+# Wireframes
+<details>
+  <summary>Home Page</summary>
+  <img src="readme-media/wireframes/home-Desktop.png" alt="home screen">
+</details>
+
+<details>
+  <summary>Login Page</summary>
+  <img src="readme-media/wireframes/login-Desktop.png" alt="login page">
+</details>
+
+<details>
+  <summary>Signup Page</summary>
+  <img src="readme-media/wireframes/signup-form.png" alt="signup page">
+</details>
+
+<details>
+  <summary>Edit Profile Form</summary>
+  <img src="readme-media/wireframes/edit-Profile-Desktop.png" alt="edit profile page">
+</details>
+
+<details>
+  <summary>Profile Page</summary>
+  <img src="readme-media/wireframes/Profile-Desktop.png" alt="profile page">
+</details>
+
+<details>
+  <summary>Search Page</summary>
+  <img src="readme-media/wireframes/Search-Desktop.png" alt="search page">
+</details>
+
+<details>
+  <summary>Friends Page</summary>
+  <img src="readme-media/wireframes/friends-page.png" alt="friends page">
+</details>
+
+
+## Features
+
+### User Registration
+- **Feature**: Users can register by providing necessary details like username, email, and password.
+- **Benefit**: Allows users to create a personalized account and access the platform's features.
+
+<details>
+  <summary>Signup Desktop</summary>
+  <img src="readme-media/site-images/signup-desktop.png" alt="Signup desktop page">
+</details>
+
+<details>
+  <summary>Signup Mobile</summary>
+  <img src="readme-media/site-images/signup-mobile.png" alt="Signup mobile page">
+</details>
+
+
+### User Login
+- **Feature**: Users can log in using their registered email and password.
+- **Benefit**: Enables users to access their personalized content and maintain session security.
+<details>
+  <summary>Login Desktop</summary>
+  <img src="readme-media/site-images/login-desktop.png" alt="login desktop page">
+</details>
+
+<details>
+  <summary>Login Mobile</summary>
+  <img src="readme-media/site-images/login-mobile.png" alt="login mobile page">
+</details>
+
+### Feeds
+- **Feature**: Displays a personalized feed of posts from the user's friends and connections.
+- **Benefit**: Keeps users updated with the latest activities and posts from their network.
+<details>
+  <summary>Feed Desktop</summary>
+  <img src="readme-media/site-images/feed-desktop.png" alt="feed desktop page">
+</details>
+
+<details>
+  <summary>Feed Mobile</summary>
+  <img src="readme-media/site-images/feed-mobile.png" alt="feed mobile page">
+</details>
+
+### Profile Editing Form
+- **Feature**: Users can edit their profile information, including profile picture, name, and personal email.
+- **Benefit**: Allows users to keep their profile information current and reflective of their identity.
+  
+<details>
+  <summary>Edit Profile Form Desktop</summary>
+  <img src="readme-media/site-images/profile-editing-desktop.png" alt="edit-profile desktop page">
+</details>
+
+<details>
+  <summary>Edit Profile Form Mobile</summary>
+  <img src="readme-media/site-images/profile-editing-mobile.png" alt="edit-profile mobile page">
+</details>
+
+
+### Profile Page
+- **Feature**: Displays user's profile with friends count, post count, and options to add posts (text or image), read posts, and delete posts.
+- **Benefit**: Provides a comprehensive view of the user's activity and allows content management.
+
+<details>
+  <summary>Profile Page Desktop</summary>
+  <img src="readme-media/site-images/profile-desktop.png" alt="profile desktop page">
+</details>
+
+<details>
+  <summary>Profile Page Mobile</summary>
+  <img src="readme-media/site-images/profile-mobile.png" alt="profile mobile page">
+</details>
+
+
+### Friend Management
+- **Feature**: Users can see incoming friend requests, accept or reject them, and view a list of their friends.
+- **Benefit**: Facilitates building and managing a social network.
+<details>
+  <summary>Friends Page Desktop</summary>
+  <img src="readme-media/site-images/friends-desktop.png" alt="friends desktop page">
+</details>
+
+<details>
+  <summary>Friends Page Mobile</summary>
+  <img src="readme-media/site-images/friends-mobile.png" alt="friends mobile page">
+</details>
+
+### Comment and Like Posts
+- **Feature**: Users can like and comment on posts to engage with the content.
+- **Benefit**: Encourages interaction and engagement on the platform.
+  
+<details>
+  <summary>Comment and Like Post Desktop</summary>
+  <img src="readme-media/site-images/postcomments-dektop.png" alt="search desktop page">
+</details>
+
+<details>
+  <summary>Comment and Like Post Mobile</summary>
+  <img src="readme-media/site-images/postcomments-mobile.png" alt="search mobile page">
+</details>
+
+### Search Functionality
+- **Feature**: Users can search for other users and posts using a dedicated search page.
+- **Benefit**: Makes it easy to find specific content and connect with new users.
+
+<details>
+  <summary>Search Page Desktop</summary>
+  <img src="readme-media/site-images/search-desktop.png" alt="search desktop page">
+</details>
+
+<details>
+  <summary>Search Page Mobile</summary>
+  <img src="readme-media/site-images/search-mobile.png" alt="search mobile page">
+</details>
+
+
+### Future Features
+
+#### Trends
+- **Feature**: Display trending topics and content based on user engagement and activity.
+- **Benefit**: Keeps users informed about popular discussions and trending content on the platform.
+
+#### Chat
+- **Feature**: Real-time chat functionality for direct messaging between users.
+- **Benefit**: Enhances communication by allowing private and instant conversations.
+
+#### People You May Know
+- **Feature**: Suggests potential friends based on mutual connections and shared interests.
+- **Benefit**: Helps users expand their social network by connecting with people who have common interests or mutual friends.
+
