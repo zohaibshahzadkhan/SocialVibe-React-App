@@ -530,6 +530,35 @@ Before deploying to Heroku, ensure the following steps are completed:
 
 ### Local Deployment
 1. On GitHub.com, navigate to the [zohaibshahzadkhan/SocialVibe-React-App](https://github.com/zohaibshahzadkhan/SocialVibe-React-App) repository and clone it.
-2. Once you clone the repository you will need to install the node packages, you can do this by typing "npm install" into the terminal from root directory of the project.
-3. Run `npm run dev` from the root of the project folder to start local deployment server
+2. Once you clone the repository you will need to install the node packages, you can do this by typing `npm install` into the terminal from root directory of the project.
+3. Run `npm run dev` from the root of the project folder to start local deployment server.
+
+
+## Credits
+
+### Learning Resources
+
+- **Code Institute**: Thank you for the tutorials on learning Django REST Framework and React.
+
+### Problem Solving
+
+- **Stack Overflow**: Grateful for the community's help in troubleshooting issues, especially with the latest versions of packages.
+
+### Design and Assets
+
+- **Heroicons (heroicons.co)**: Icons used throughout the project were sourced from Heroicons.
+- **Freepik**: Special thanks for providing icons that contributed to the project's visual appeal.
+
+### Design Tools
+
+- **Figma**: Used Figma for creating wireframes and designing the user interface.
+
+### Styling
+
+- **Tailwind CSS Community**: Appreciation for the vibrant community and resources that helped in styling the project using Tailwind CSS.
+
+---
+
+This project wouldn't have been possible without the invaluable resources and support from these platforms and communities. Thank you!
+
 
