@@ -9,7 +9,7 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <div className="menu-left">
-            <a href="#" className="text-xl">
+            <a href="/" className="text-xl">
               SocialVibe
             </a>
           </div>
