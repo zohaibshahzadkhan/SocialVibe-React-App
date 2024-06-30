@@ -104,8 +104,7 @@ export function PostsProvider({ children }) {
       });
   };
 
-  const submitPostForm = postId => e => {
-    e.preventDefault();
+  const submitPostForm = postId => {
     axios
       .post(`/api/posts/${postId}/comment/`, { body })
       .then(response => {

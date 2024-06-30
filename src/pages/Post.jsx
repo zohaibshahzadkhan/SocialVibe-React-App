@@ -4,18 +4,31 @@ import FeedItem from '../components/FeedItem';
 import CommentItem from '../components/CommentItem';
 import { usePosts } from '../context/PostsContext';
 import { useUser } from '../context/UserContext';
+import { useToast } from '../context/ToastContext';
 
 function Post() {
   const { post, getPost, submitPostForm, body, setBody } = usePosts();
   const { user } = useUser();
   const navigate = useNavigate();
-
+  const { showToast } = useToast();
   const { postId } = useParams();
 
   useEffect(() => {
     getPost(postId);
   }, []);
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (!body) {
+      showToast(
+        5000,
+        'Cannot create empty comment. Please enter text.',
+        'bg-red-500'
+      );
+      return;
+    }
+    submitPostForm(postId);
+  };
   const deletePost = id => {
     navigate(`/profile/${user.id}`);
   };
@@ -39,7 +52,7 @@ function Post() {
         ))}
 
         <div className="bg-white border border-gray-200 rounded-lg">
-          <form onSubmit={submitPostForm(postId)}>
+          <form onSubmit={handleSubmit}>
             <div className="p-4">
               <textarea
                 value={body}
