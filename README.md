@@ -307,6 +307,7 @@ These components are created and reused across multiple pages of this applicatio
 - `<NavBar />`: Contains navigation links and user profile actions.
 - `<ProfileInfo />`: Displays user profile information.
 - `<Toast />`: Handles toast notifications for user feedback.
+- `<Loading />`: Renders a visual indicator (e.g., "Loading...") to inform users that data is being fetched.
 
 ### Pages
 

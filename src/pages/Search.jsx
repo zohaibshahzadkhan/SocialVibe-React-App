@@ -3,6 +3,7 @@ import FeedItem from '../components/FeedItem';
 import { useSearch } from '../context/SearchContext';
 import useLoading from '../hooks/useLoading';
 import '../styles/Search.css';
+import Loading from '../components/Loading';
 
 function Search() {
   const { query, setQuery, users, posts, submitForm, setUsers, setPosts } =
@@ -117,11 +118,7 @@ function Search() {
           </>
         )}
 
-        {loading && searched && (
-          <div className="text-center text-xl font-semibold text-gray-700">
-            Loading...
-          </div>
-        )}
+        {loading && searched && <Loading />}
       </div>
     </div>
   );

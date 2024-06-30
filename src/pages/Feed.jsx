@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import FeedForm from '../components/FeedForm';
 import FeedItem from '../components/FeedItem';
 import { usePosts } from '../context/PostsContext';
 import { useUser } from '../context/UserContext';
+import Loading from '../components/Loading';
 
 function Feed() {
   const { posts, getFeed, setPosts } = usePosts();
   const { user } = useUser();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (user.isAuthenticated) {
-      getFeed();
+      getFeed()
+        .then(() => setLoading(false))
+        .catch(() => setLoading(false));
     }
   }, [user.isAuthenticated]);
 
@@ -24,14 +29,18 @@ function Feed() {
         <div className="bg-white border border-gray-200 rounded-lg">
           <FeedForm />
         </div>
-        {posts.map(post => (
-          <div
-            className="p-4 bg-white border border-gray-200 rounded-lg"
-            key={post.id}
-          >
-            <FeedItem post={post} onDeletePost={deletePost} />
-          </div>
-        ))}
+        {loading ? (
+          <Loading />
+        ) : (
+          posts.map(post => (
+            <div
+              className="p-4 bg-white border border-gray-200 rounded-lg"
+              key={post.id}
+            >
+              <FeedItem post={post} onDeletePost={deletePost} />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

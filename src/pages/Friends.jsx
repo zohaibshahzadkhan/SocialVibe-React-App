@@ -4,6 +4,7 @@ import { useFriendship } from '../context/FriendshipContext';
 import { usePosts } from '../context/PostsContext';
 import { useToast } from '../context/ToastContext';
 import useLoading from '../hooks/useLoading';
+import Loading from '../components/Loading';
 
 function Friends() {
   const { postUser, getUserFeed } = usePosts();
@@ -64,11 +65,7 @@ function Friends() {
   };
 
   if (loadingFriends || loadingFeed) {
-    return (
-      <div className="text-center text-xl font-semibold text-gray-700">
-        Loading...
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
