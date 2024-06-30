@@ -23,6 +23,9 @@ function FeedForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!body && !fileInputRef.current.files[0]) {
+      return;
+    }
     const formData = new FormData();
     formData.append('image', fileInputRef.current.files[0]);
     formData.append('body', body);
