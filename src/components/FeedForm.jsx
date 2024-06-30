@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { usePosts } from '../context/PostsContext';
 import { useUser } from '../context/UserContext';
+import { useToast } from '../context/ToastContext';
 
 function FeedForm() {
   const { submitPost } = usePosts();
   const { user } = useUser();
+  const { showToast } = useToast();
 
   const [body, setBody] = useState('');
   const [url, setUrl] = useState(null);
@@ -24,6 +26,11 @@ function FeedForm() {
   const handleSubmit = e => {
     e.preventDefault();
     if (!body && !fileInputRef.current.files[0]) {
+      showToast(
+        5000,
+        'Cannot create empty post. Please upload an image or enter text.',
+        'bg-red-500'
+      );
       return;
     }
     const formData = new FormData();
