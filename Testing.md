@@ -1,6 +1,6 @@
 # SocialVibes
 
-[<< Back to ReadMe](Readme.md)
+[<< Back to ReadMe](./README.md)
 
 ## Automated Tests
 
@@ -141,7 +141,7 @@ I have 4 test suits with 9 tests for my code.
 
 ##### Successful Login
 - **Description**: Log in with valid credentials.
-- **Expected Outcome**: User is authenticated, tokens are stored, and the user is redirected to their profile page. (Pass)
+- **Expected Outcome**: User is authenticated, tokens are stored, and the user is redirected to Feed page. (Pass)
 
 ##### Error Handling
 - **Description**: Log in with incorrect credentials.
@@ -342,7 +342,7 @@ With the Lighthouse tests, there are some best practices issues due to Cloudinar
 </details>
 
 ## Devices used for manual testing
-Parrothub was tested using Chrome desktop and mobile browsers
+SocialVibe was tested using Chrome desktop and mobile browsers
 
 
 
@@ -461,3 +461,5 @@ No Errors were found
 ![Edit Profile Page](readme-media/validation/css/Edit-profile.png)
 
 </details>
+
+[<< Back to ReadMe](./README.md)

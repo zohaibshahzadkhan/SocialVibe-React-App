@@ -419,6 +419,23 @@ To address this issue, we can we either return null or a form based on the user'
 - **React Testing Library**
   - **Description**: Simple and complete React DOM testing utilities that encourage good testing practices.
   - **Justification**: Used for testing React components by focusing on user interactions, ensuring that the components behave as expected from the user's perspective, promoting effective and reliable testing practices.
+  
+  ### Linter, Prettier, and Formatter
+
+- **ESLint**
+  - **Description**: ESLint is a static code analysis tool for identifying problematic patterns found in JavaScript and JSX code. It ensures code quality and adherence to coding standards.
+  - **Commands**:
+    - `npm run lint`: Runs ESLint to check for code issues.
+    - `npm run lint:fix`: Automatically fixes ESLint issues where possible.
+  - **Configuration**:
+    - Uses `eslint-config-airbnb` as the base configuration.
+    - Additional plugins include `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, `eslint-plugin-react`, and `eslint-plugin-react-hooks`.
+
+- **Prettier**
+  - **Description**: Prettier is a code formatter that enforces a consistent style by parsing code and reprinting it with its own rules, taking care of formatting concerns such as indentation, semicolons, and quotes.
+  - **Command**: `npm run format`
+  - **Configuration**: 
+    - Prettier is configured to format JavaScript and JSX files located in the `src` directory.
 
 ### Tools & Programs
 - **Chrome DevTools**: Built-in debugging tools for various browser debugging tasks.
@@ -474,11 +491,6 @@ A separate testing document has been created as [Testing.md](Testing.md)
 ## Deployment
 
 ### Deploying the SocialVibe App on Heroku
-
-Before deploying to Heroku, ensure the following steps are completed:
-
-- **Procfile**: Create a `Procfile` for deployment. This file is crucial for Heroku to understand how to run your application.
-
 
 ### Steps to Deploy:
 
@@ -559,6 +571,6 @@ Before deploying to Heroku, ensure the following steps are completed:
 
 ---
 
-This project wouldn't have been possible without the invaluable resources and support from these platforms and communities. Thank you!
+This project wouldn't have been possible without the valuable resources and support from these platforms and communities. Thank you!
 
 
