@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FeedItem from '../components/FeedItem';
 import { useSearch } from '../context/SearchContext';
 import useLoading from '../hooks/useLoading';
@@ -11,6 +11,12 @@ function Search() {
   const [searched, setSearched] = useState(false);
   const { loading, handleLoading } = useLoading(submitForm);
 
+  useEffect(
+    () => () => {
+      setQuery('');
+    },
+    [setQuery]
+  );
   const handleInputChange = e => {
     const inputValue = e.target.value;
     setQuery(inputValue);
