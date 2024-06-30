@@ -43,6 +43,14 @@ export function FriendshipProvider({ children }) {
   const handleRequest = async (status, userId) => {
     try {
       await axios.post(`/api/friends/${userId}/${status}/`);
+      if (status === 'accepted') {
+        const updatedFriends = [...friends];
+        const acceptedRequest = friendshipRequests.find(
+          req => req.created_by.id === userId
+        );
+        updatedFriends.push(acceptedRequest.created_by);
+        setFriends(updatedFriends);
+      }
     } catch (error) {
       console.error('Error handling request:', error);
     }
