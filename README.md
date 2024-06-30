@@ -297,7 +297,9 @@ React is a declarative, efficient, and flexible JavaScript library for building 
 - **React Bootstrap**: Provides pre-built components for improved styling and responsiveness.
 - **Reusability**: Facilitates the creation and reuse of components across the application.
 
-### Components
+### Reusable Components
+
+These components are created and reused across multiple pages of this application.
 
 - `<FeedForm />`: Manages the input form for creating new feed items.
 - `<FeedItem />`: Displays individual feed items.

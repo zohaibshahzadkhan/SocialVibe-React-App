@@ -57,7 +57,7 @@ export function UserProvider({ children }) {
         axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
       })
       .catch(error => {
-        console.log('error', error);
+        console.error('error', error);
         removeToken();
       });
   };
@@ -149,7 +149,7 @@ export function UserProvider({ children }) {
           }
         })
         .catch(error => {
-          console.log('error', error);
+          console.error('error', error);
         });
     }
   };
@@ -205,7 +205,7 @@ export function UserProvider({ children }) {
         }
       })
       .catch(error => {
-        console.log('error', error);
+        console.error('error', error);
         showToast(5000, 'An error occurred. Please try again.', 'bg-red-500');
       });
   };
